@@ -1,0 +1,35 @@
+{
+  "syncbackRules": {
+    "ignoreTrees": [
+      "src/ReplicatedStorage",
+      "src/ServerScriptService",
+      "src/StarterPlayer",
+      "src/ServerStorage"
+    ]
+  },
+  "name": "lucky block wars",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/ReplicatedStorage"
+      }
+    },
+
+    "ServerScriptService": {
+        "$path": "src/ServerScriptService"
+    },
+
+    "ServerStorage": {
+        "$path": "src/ServerStorage"
+    },
+
+    "StarterPlayer": {
+        "$path": "src/StarterPlayer"
+    },
+
+    "Workspace": {
+    }
+  }
+}
