@@ -16,13 +16,14 @@ local function Leaderstats(player)
 
 	local Leaderstats = Instance.new("Folder", player)
 	Leaderstats.Name = "leaderstats"
-	local coins = Instance.new("IntValue", Leaderstats)
-	coins.Name = "cash"
-	coins.Value = profile.Data.Cash
 
-	local Level = Instance.new("IntValue", Leaderstats)
-	Level.Name = "Level"
-	Level.Value = profile.Data.Level
+	local Kills = Instance.new("IntValue", Leaderstats)
+	Kills.Name = "Kills"
+	Kills.Value = profile.Data.Kills
+
+	local Coins = Instance.new("IntValue", Leaderstats)
+	Coins.Name = "Coins"
+	Coins.Value = profile.Data.Coins
 
 end
 	
