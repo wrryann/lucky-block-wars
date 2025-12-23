@@ -2,35 +2,35 @@ local LuckyBlockSystem = {}
 
 LuckyBlockSystem.__index = LuckyBlockSystem
 
-local DefaultRarityTable = {
-	{ Name = "Common", Chance = 50 },
-	{ Name = "Uncommon", Chance = 30 },
-	{ Name = "Rare", Chance = 15 },
-	{ Name = "Epic", Chance = 4 },
-	{ Name = "Legendary", Chance = 1 },
-	{ Name = "Godly", Chance = 0.5 },
-	{ Name = "Mythic", Chance = 0.01 }
-}
-
 function LuckyBlockSystem.new(LuckyBlock)
 	local self = setmetatable({}, LuckyBlockSystem)
 	self.Model = LuckyBlock.Model
 	self.Name = LuckyBlock.Name
-	self.Luck = LuckyBlock.Luck
-
-	self.RarityTable = {}
-
-	for i, Rarity in pairs(DefaultRarityTable) do
-		self.RarityTable[i] = {Rarity.Name, (i - #DefaultRarityTable / 2) / #DefaultRarityTable / 2}
-	end
+	self.RarityTable = LuckyBlock.RarityTable
 	
 	return self
 end
 
+function GetRandomItem(ChanceTable)
+	local TotalWeight = 0
+	for i,v in pairs(ChanceTable) do
+		TotalWeight = TotalWeight + v.Rarity
+	end
+	local Chance = math.random(1,TotalWeight)
+	local Counter = 0
+	for i,v in pairs(ChanceTable) do
+		Counter = Counter+v.Rarity
+		if Counter >= Chance then
+			return v.Name
+		end
+	end
+
+	
+end
 
 
 function LuckyBlockSystem:Open(Player)
-	print(self.RarityTable)
+	GetRandomItem(self.RarityTable)
 end
 
 return LuckyBlockSystem
