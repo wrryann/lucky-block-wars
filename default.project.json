@@ -3,7 +3,7 @@
     "ignoreTrees": [
       "src/ReplicatedStorage",
       "src/ServerScriptService",
-      "src/StarterPlayer",
+      "src/StarterPlayerScripts",
       "src/ServerStorage"
     ]
   },
@@ -12,9 +12,7 @@
     "$className": "DataModel",
 
     "ReplicatedStorage": {
-      "Shared": {
-        "$path": "src/ReplicatedStorage"
-      }
+      "$path": "src/ReplicatedStorage"
     },
 
     "ServerScriptService": {
@@ -25,8 +23,8 @@
         "$path": "src/ServerStorage"
     },
 
-    "StarterPlayer": {
-        "$path": "src/StarterPlayer"
+    "StarterPlayerScripts": {
+        "$path": "src/StarterPlayerScripts"
     },
 
     "Workspace": {

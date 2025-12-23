@@ -1,3 +1,4 @@
+local AssetService = game:GetService("AssetService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -7,7 +8,7 @@ local MIN_PLAYERS = 1
 
 local LevelSystem = {}
 
-local Maps = ReplicatedStorage.Maps:GetChildren()
+local Maps = ReplicatedStorage.Assets.Maps:GetChildren()
 local Lobby = workspace:WaitForChild("Lobby")  
 
 local function Countdown(time)
@@ -26,22 +27,17 @@ local function shuffle(array)
 end
 
 local function TeleportPlayers(map)
-    local Houses = map:FindFirstChild("Houses"):GetChildren()
-    local Spawns = {}
-    for _, house in pairs(Houses) do
-        local spawn = house:FindFirstChild("Spawn")
-        table.insert(Spawns, spawn)
-    end
-
+    local Spawns = map:FindFirstChild("Spawns"):GetChildren()
     local HouseSuffle = shuffle(Spawns)
 
     local i = 1
     for _, plr in pairs(Players:GetPlayers()) do
         if not plr.Character then
             continue
-        else
-            plr.Character:PivotTo(HouseSuffle[i].CFrame)
         end
+
+        plr.Character:PivotTo(HouseSuffle[i].CFrame)
+
     end
 end
 
