@@ -1,3 +1,6 @@
+local ServerStorage = game:GetService("ServerStorage")
+local ItemsCatalog = require(ServerStorage.ItemsCatalog)
+
 local LuckyBlockSystem = {}
 
 LuckyBlockSystem.__index = LuckyBlockSystem
@@ -24,6 +27,7 @@ function GetRandomItem(ChanceTable)
 			return v.Name
 		end
 	end
+
 
 	
 end
