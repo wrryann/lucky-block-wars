@@ -3,6 +3,16 @@ local ItemsCatalog = require(ServerStorage.ItemsCatalog)
 
 local LuckyBlockSystem = {}
 
+export type RarityTable = {
+	Common: number,
+	Uncommon: number,
+	Rare: number,
+	Epic: number,
+	Legendary: number,
+	Godly: number,
+	Mythic: number,
+}
+
 LuckyBlockSystem.__index = LuckyBlockSystem
 
 function LuckyBlockSystem.new(LuckyBlock)
@@ -29,7 +39,7 @@ function GetRandomItem(ChanceTable)
 	end
 
 
-	
+
 end
 
 

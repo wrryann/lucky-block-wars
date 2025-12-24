@@ -3,16 +3,14 @@ local ItemsModels = ServerStorage.Assets.LuckyBlockModels
 local ItemsCatalog = require(ServerStorage.ItemsCatalog)
 
 local CommonItems: {ItemsCatalog.Item} = {
-	WoodenSword = {
+	{
+		Name = "Classic Sword",
+		Model = ItemsModels:FindFirstChild("ClassicSword"),
+	},
+	{
 		Name = "Wooden Sword",
-		Model = ItemsModels:FindFirstChild("Wooden Sword"),
+		Model = ItemsModels:FindFirstChild("WoodenSword"),
 	},
 }
 
-local item = {
-    WoodenSword = {
-        Model = ItemsModels:FindFirstChild("Wooden Sword"),
-    },
-}
-
-return ItemsCatalog
+return CommonItems
