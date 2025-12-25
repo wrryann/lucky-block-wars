@@ -24,7 +24,7 @@ function LuckyBlockSystem.new(LuckyBlock)
 	return self
 end
 
-function GetRandomItem(ChanceTable)
+function GetRarity(ChanceTable)
 	local TotalWeight = 0
 	for i,v in pairs(ChanceTable) do
 		TotalWeight = TotalWeight + v.Rarity
@@ -37,14 +37,35 @@ function GetRandomItem(ChanceTable)
 			return v.Name
 		end
 	end
+end
 
+local function GetRandomItem()
+	
+end	
 
+function LuckyBlockSystem:GetRandomItem()
+	local Rarity = GetRarity(self.RarityTable)
 
+	if Rarity == "Commom" then
+		ItemsCatalog.Common
+	elseif Rarity == "Uncommom" then
+
+	elseif Rarity == "Rare" then
+	
+	elseif Rarity == "Epic" then
+
+	elseif Rarity == "Legendary" then
+
+	elseif Rarity == "Godly" then
+
+	elseif Rarity == "Mythic" then
+
+	end
 end
 
 
 function LuckyBlockSystem:Open(Player)
-	GetRandomItem(self.RarityTable)
+	self:GetRandomItem()
 end
 
 return LuckyBlockSystem

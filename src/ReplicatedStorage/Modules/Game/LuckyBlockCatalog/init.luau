@@ -12,15 +12,15 @@ type LuckyBlock = {
 
 local LuckyBlockCatalog: {LuckyBlock} = {
 	CommonLuckyBlock = {
-		DisplayName = "Common Lucky Block",
+		DisplayName = "Default Lucky Block",
 		Model = LuckyBlockModels:FindFirstChild("CommonLuckyBlock"),
 		RarityTable = {
-			Common = 40,
+			Common = 60,
 			Uncommon = 20,
 			Rare = 10,
 			Epic = 3,
-			Legendary = 0.5,
-			Godly = 0.01,
+			Legendary = 0.05,
+			Godly = 0.005,
 			Mythic = 0.001,
 		},
 	},
