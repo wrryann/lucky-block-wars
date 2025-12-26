@@ -1,5 +1,5 @@
 local ServerStorage = game:GetService("ServerStorage")
-local ItemsCatalog = require(ServerStorage.ItemsCatalog)
+local ItemsCatalog = require(ServerStorage.Modules.Game.ItemsCatalog)
 
 local LuckyBlockSystem = {}
 
@@ -13,12 +13,22 @@ export type RarityTable = {
 	Mythic: number,
 }
 
+export type LuckyBlock = {
+	{
+	DisplayName: string?,
+	Model: Model,
+	Icon: ImageLabel?,
+	RarityTable: RarityTable,
+	}
+}
+
 LuckyBlockSystem.__index = LuckyBlockSystem
 
 function LuckyBlockSystem.new(LuckyBlock)
 	local self = setmetatable({}, LuckyBlockSystem)
 	self.Model = LuckyBlock.Model
-	self.Name = LuckyBlock.Name
+	self.Name = LuckyBlock.Name or "Lucky Block"
+	self.Icon = LuckyBlock.Icon or nil
 	self.RarityTable = LuckyBlock.RarityTable
 	
 	return self
@@ -26,15 +36,18 @@ end
 
 function GetRarity(ChanceTable)
 	local TotalWeight = 0
-	for i,v in pairs(ChanceTable) do
-		TotalWeight = TotalWeight + v.Rarity
+
+	for _, chance in pairs(ChanceTable) do
+		TotalWeight += chance
 	end
-	local Chance = math.random(1,TotalWeight)
+
+	local Roll = math.random(1, TotalWeight)
 	local Counter = 0
-	for i,v in pairs(ChanceTable) do
-		Counter = Counter+v.Rarity
-		if Counter >= Chance then
-			return v.Name
+
+	for name, chance in pairs(ChanceTable) do
+		Counter += chance
+		if Counter >= Roll then
+			return name
 		end
 	end
 end
@@ -46,26 +59,33 @@ end
 function LuckyBlockSystem:GetRandomItem()
 	local Rarity = GetRarity(self.RarityTable)
 
-	if Rarity == "Commom" then
-		ItemsCatalog.Common
-	elseif Rarity == "Uncommom" then
-
+	if Rarity == "Common" then
+		return ItemsCatalog.GetRandomItem("Common")
+	elseif Rarity == "Uncommon" then
+		return ItemsCatalog.GetRandomItem("Uncommon")
 	elseif Rarity == "Rare" then
-	
+		return ItemsCatalog.GetRandomItem("Rare")
 	elseif Rarity == "Epic" then
-
+		return ItemsCatalog.GetRandomItem("Epic")
 	elseif Rarity == "Legendary" then
-
+		return ItemsCatalog.GetRandomItem("Legendary")
 	elseif Rarity == "Godly" then
-
+		return ItemsCatalog.GetRandomItem("Godly")
 	elseif Rarity == "Mythic" then
-
+		return ItemsCatalog.GetRandomItem("Mythic")
 	end
+
+	return nil
 end
 
 
 function LuckyBlockSystem:Open(Player)
-	self:GetRandomItem()
+	local RandomItem = self:GetRandomItem()
+	local Weapon = RandomItem.Model:Clone()
+	Weapon.Parent = Player.Backpack
+	
+
+	--destroy lucky
 end
 
 return LuckyBlockSystem

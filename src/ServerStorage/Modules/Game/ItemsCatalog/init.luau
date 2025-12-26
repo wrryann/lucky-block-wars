@@ -1,18 +1,19 @@
 -- YO 
-
-export type Item = {
-	{
-		Name: string,
-		Model: Model,
-	}
-}
-
 local Catalog = {}
 
 local ItemsFolder = script.Items
 
+function Catalog.GetRandomItem(rarity: string)
+    local itemsList = Catalog[rarity]
+    if itemsList then
+        local randomIndex = math.random(1, #itemsList)
+        return itemsList[randomIndex]
+    end
+    return nil
+end
+
 local Common = require(ItemsFolder.CommonItems)
-local Uncommon = require(ItemsFolder.RareItems)
+local Uncommon = require(ItemsFolder.UncommonItems)
 local Rare = require(ItemsFolder.RareItems)
 local Epic = require(ItemsFolder.EpicItems)
 local Legendary = require(ItemsFolder.LegendaryItems)

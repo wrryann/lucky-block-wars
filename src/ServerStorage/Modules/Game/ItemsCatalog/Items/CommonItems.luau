@@ -1,15 +1,15 @@
-local ServerStorage = game:GetService("ServerStorage")
-local ItemsModels = ServerStorage.Assets.LuckyBlockModels
-local ItemsCatalog = require(ServerStorage.ItemsCatalog)
+local ItemsModels = game.ServerStorage.Assets.Items
 
-local CommonItems: {ItemsCatalog.Item} = {
+local CommonItems = {
 	{
 		Name = "Classic Sword",
-		Model = ItemsModels:FindFirstChild("ClassicSword"),
+		Model = ItemsModels.Swords:FindFirstChild("ClassicSword"),
+		icon = "rbxassetid://13722597317",
 	},
 	{
 		Name = "Wooden Sword",
-		Model = ItemsModels:FindFirstChild("WoodenSword"),
+		Model = ItemsModels.Swords:FindFirstChild("WoodenSword"),
+		icon = "rbxassetid://13722597317",
 	},
 }
 

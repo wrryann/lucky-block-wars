@@ -4,6 +4,8 @@ return function()
 
         local Module = require(ModuleScript)
         if Module.Init then
+            Module.Init()
+        end
             
     end
 end

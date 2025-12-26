@@ -1,16 +1,8 @@
 local ServerStorage = game:GetService("ServerStorage")
 local LuckyBlockModels = ServerStorage.Assets.LuckyBlockModels
-local LuckyBlockSystem = require(ServerStorage.LuckyBlockSystem)
+local LuckyBlockClass = require(game.ReplicatedStorage.Classes.LuckyBlock)
 
-type LuckyBlock = {
-	{
-	DisplayName: string,
-	Model: Model,
-	RarityTable: LuckyBlockSystem.RarityTable,
-	}
-}
-
-local LuckyBlockCatalog: {LuckyBlock} = {
+local LuckyBlockCatalog: {LuckyBlockClass.LuckyBlock} = {
 	CommonLuckyBlock = {
 		DisplayName = "Default Lucky Block",
 		Model = LuckyBlockModels:FindFirstChild("CommonLuckyBlock"),
