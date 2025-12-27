@@ -1,5 +1,7 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerStorage = game:GetService("ServerStorage")
 local ItemsCatalog = require(ServerStorage.Modules.Game.ItemsCatalog)
+local UiNotificaion = require(ReplicatedStorage.UI.Notification)
 
 local LuckyBlockSystem = {}
 
@@ -52,10 +54,6 @@ function GetRarity(ChanceTable)
 	end
 end
 
-local function GetRandomItem()
-	
-end	
-
 function LuckyBlockSystem:GetRandomItem()
 	local Rarity = GetRarity(self.RarityTable)
 
@@ -78,14 +76,36 @@ function LuckyBlockSystem:GetRandomItem()
 	return nil
 end
 
+local function RarityColor(Rarity)
+	if Rarity == "Common" then
+		return Color3.fromRGB(145, 145, 145)
+	elseif Rarity == "Uncommon" then
+		return Color3.fromRGB(153, 221, 104)
+	elseif Rarity == "Rare" then
+		return Color3.fromRGB(236, 128, 52)
+	elseif Rarity == "Epic" then
+		return Color3.fromRGB(220, 42, 230)
+	elseif Rarity == "Legendary" then
+		return Color3.fromRGB(252, 237, 27)
+	elseif Rarity == "Godly" then
+		return Color3.fromRGB(255, 24, 24)
+	elseif Rarity == "Mythic" then
+		return Color3.fromRGB(44, 8, 127)
+	end
+
+	return nil
+end
+
 
 function LuckyBlockSystem:Open(Player)
 	local RandomItem = self:GetRandomItem()
 	local Weapon = RandomItem.Model:Clone()
 	Weapon.Parent = Player.Backpack
-	
 
-	--destroy lucky
+	local text = UiNotificaion.SendText("you got a".. RandomItem.Name, RarityColor(RandomItem.Rarity))
+
+	self.Model:Destroy()
+	return 
 end
 
 return LuckyBlockSystem
