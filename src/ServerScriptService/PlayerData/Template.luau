@@ -6,10 +6,10 @@ local template = {
 	Coins = 0,
 	Kills = 0,
 
-	EquippedLuckyBlock: LuckyBlockClass.LuckyBlock = LuckyBlockCatalog.CommonLuckyBlock,
+	EquippedLuckyBlock = LuckyBlockCatalog.DefaultLuckyBlock,
 
 	Inventory = {
-		LuckyBlocks: {LuckyBlockClass.LuckyBlock} = {},
+		LuckyBlocks = {},
 	},
 	
 	Tutorial = false,

@@ -2,22 +2,17 @@ local AssetService = game:GetService("AssetService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
+local ServerStorage = game:GetService("ServerStorage")
 
 local INTERMISSION_TIME = 10
 local ROUND_TIME = 45
 local MIN_PLAYERS = 1
 
-
--- change the name to round service =========================
--- =================================
-
-
-
 local LevelSystem = {}
 
 local LuckyBlockService = require(ServerScriptService.Services.LuckyBlockService)
 
-local Maps = ReplicatedStorage.Assets.Maps:GetChildren()
+local Maps = ServerStorage.Assets.Maps:GetChildren()
 local Lobby = workspace:WaitForChild("Lobby")  
 
 local function Countdown(time)

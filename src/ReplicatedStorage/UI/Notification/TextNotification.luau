@@ -1,14 +1,25 @@
 local Players = game:GetService("Players")
-local UI = Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("NotificationText")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shop = {}
 
-function Shop:SendText(Text: string, color: Color3)
-    local Notification = UI.Text:clone()
+Shop.Notifications = {}
 
-    Notification.Text = Text
-    Notification.color = color
-    
+function Shop.SendText(Plr: Player, Text: string, color: Color3)
+    local UI = ReplicatedStorage.Assets.UI.Notifications
+    local ScreenGui = Plr:WaitForChild("PlayerGui"):WaitForChild("Screen")
+
+    local Notification = UI.DefaultText:Clone()
+
+    Notification.TextLabel.Text = Text
+    Notification.TextLabel.TextColor3 = color
+    Notification.Parent = ScreenGui.Notifications
+
+    table.insert(Shop.Notifications, Notification)
+
+    task.delay(5, function()
+        Notification:Destroy()
+    end)
 end
 
 return Shop

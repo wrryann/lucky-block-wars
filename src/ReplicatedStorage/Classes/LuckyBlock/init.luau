@@ -1,7 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerStorage = game:GetService("ServerStorage")
 local ItemsCatalog = require(ServerStorage.Modules.Game.ItemsCatalog)
-local UiNotificaion = require(ReplicatedStorage.UI.Notification)
+local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification)
 
 local LuckyBlockSystem = {}
 
@@ -102,7 +102,7 @@ function LuckyBlockSystem:Open(Player)
 	local Weapon = RandomItem.Model:Clone()
 	Weapon.Parent = Player.Backpack
 
-	local text = UiNotificaion.SendText("you got a".. RandomItem.Name, RarityColor(RandomItem.Rarity))
+	local text = UiNotificaion.SendText(Player, "you got a ".. RandomItem.Name, RarityColor(RandomItem.Rarity))
 
 	self.Model:Destroy()
 	return 
