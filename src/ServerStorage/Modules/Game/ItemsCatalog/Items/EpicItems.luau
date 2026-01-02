@@ -1,18 +1,46 @@
 local ItemsModels = game.ServerStorage.Assets.Items
 
-local CommonItems = {
+local EpicItems = {
 	{
-		Name = "Classic Sword",
-		Model = ItemsModels.Swords:FindFirstChild("ClassicSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "Rainbow Magic Carpet",
+		Model = ItemsModels:FindFirstChild("RainbowMagicCarpet"),
+		Rarity = "Epic"
 	},
 	{
-		Name = "Wooden Sword",
-		Model = ItemsModels.Swords:FindFirstChild("WoodenSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "Fast Potion",
+		Model = ItemsModels:FindFirstChild("FastPotion"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Sword Of Red Epicness",
+		Model = ItemsModels:FindFirstChild("SwordOfRedEpicness"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Spec Alpha Biograft Energy Sword",
+		Model = ItemsModels:FindFirstChild("SpecAlphaBiograftEnergySword"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Fantasy Spear",
+		Model = ItemsModels:FindFirstChild("FantasySpear"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Hex Spitter",
+		Model = ItemsModels:FindFirstChild("HexSpitter"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Overseer Sword And Shield",
+		Model = ItemsModels:FindFirstChild("OverseerSwordAndShield"),
+		Rarity = "Epic"
+	},
+	{
+		Name = "Bone Sword",
+		Model = ItemsModels:FindFirstChild("BoneSword"),
+		Rarity = "Epic"
 	},
 }
 
-return CommonItems
+return EpicItems

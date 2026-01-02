@@ -6,7 +6,7 @@ local template = {
 	Coins = 0,
 	Kills = 0,
 
-	EquippedLuckyBlock = LuckyBlockCatalog.DefaultLuckyBlock,
+	EquippedLuckyBlock = "DefaultLuckyBlock",
 
 	Inventory = {
 		LuckyBlocks = {},

@@ -28,7 +28,7 @@ LuckyBlockSystem.__index = LuckyBlockSystem
 
 function LuckyBlockSystem.new(LuckyBlock)
 	local self = setmetatable({}, LuckyBlockSystem)
-	self.Model = LuckyBlock.Model
+	self.Model = LuckyBlock.Model:Clone()
 	self.Name = LuckyBlock.Name or "Lucky Block"
 	self.Icon = LuckyBlock.Icon or nil
 	self.RarityTable = LuckyBlock.RarityTable
@@ -77,7 +77,9 @@ function LuckyBlockSystem:GetRandomItem()
 end
 
 local function RarityColor(Rarity)
-	if Rarity == "Common" then
+	if Rarity == "Poopy" then
+		return Color3.fromRGB(53, 33, 23)
+	elseif Rarity == "Common" then
 		return Color3.fromRGB(145, 145, 145)
 	elseif Rarity == "Uncommon" then
 		return Color3.fromRGB(153, 221, 104)
@@ -88,24 +90,33 @@ local function RarityColor(Rarity)
 	elseif Rarity == "Legendary" then
 		return Color3.fromRGB(252, 237, 27)
 	elseif Rarity == "Godly" then
-		return Color3.fromRGB(255, 24, 24)
+		return Color3.fromRGB(253, 250, 187)
 	elseif Rarity == "Mythic" then
-		return Color3.fromRGB(44, 8, 127)
+		return Color3.fromRGB(62, 3, 97)
+	elseif Rarity == "Mystery" then
+		return Color3.fromRGB(0, 0, 0)
 	end
 
 	return nil
 end
 
 
-function LuckyBlockSystem:Open(Player)
+function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 	local RandomItem = self:GetRandomItem()
+	if not RandomItem then return end
+
+	LuckyBlockTool:Destroy()
+
 	local Weapon = RandomItem.Model:Clone()
 	Weapon.Parent = Player.Backpack
 
-	local text = UiNotificaion.SendText(Player, "you got a ".. RandomItem.Name, RarityColor(RandomItem.Rarity))
+	UiNotificaion.SendText(
+		Player,
+		"you got a "..RandomItem.Name,
+		RarityColor(RandomItem.Rarity)
+	)
 
-	self.Model:Destroy()
-	return 
 end
+
 
 return LuckyBlockSystem

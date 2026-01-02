@@ -1,18 +1,26 @@
 local ItemsModels = game.ServerStorage.Assets.Items
 
-local CommonItems = {
+local MythicItems = {
 	{
-		Name = "Classic Sword",
-		Model = ItemsModels.Swords:FindFirstChild("ClassicSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "Fall Periastron",
+		Model = ItemsModels:FindFirstChild("FallPeriastron"),
+		Rarity = "Mythic"
 	},
 	{
-		Name = "Wooden Sword",
-		Model = ItemsModels.Swords:FindFirstChild("WoodenSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "Festive Periastron",
+		Model = ItemsModels:FindFirstChild("FestivePeriastron"),
+		Rarity = "Mythic"
+	},
+	{
+		Name = "Crimson Periastron",
+		Model = ItemsModels:FindFirstChild("CrimsonPeriastron"),
+		Rarity = "Mythic"
+	},
+	{
+		Name = "Azure Periastron",
+		Model = ItemsModels:FindFirstChild("AzurePeriastron"),
+		Rarity = "Mythic"
 	},
 }
 
-return CommonItems
+return MythicItems

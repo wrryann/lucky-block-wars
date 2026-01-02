@@ -1,18 +1,41 @@
 local ItemsModels = game.ServerStorage.Assets.Items
 
-local CommonItems = {
+local LegendaryItems = {
 	{
-		Name = "Classic Sword",
-		Model = ItemsModels.Swords:FindFirstChild("ClassicSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "GatlingLaser",
+		Model = ItemsModels:FindFirstChild("GatlingLaser"),
+		Rarity = "Legendary"
 	},
 	{
-		Name = "Wooden Sword",
-		Model = ItemsModels.Swords:FindFirstChild("WoodenSword"),
-		icon = "rbxassetid://13722597317",
-		Rarity = "Common"
+		Name = "Laser Finger Pointers",
+		Model = ItemsModels:FindFirstChild("LaserFingerPointers"),
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Anime Magical Staff",
+		Model = ItemsModels:FindFirstChild("AnimeMagicalStaff"),
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Killer Whale Launcher",
+		Model = ItemsModels:FindFirstChild("KillerWhaleLauncher"),
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Razevenge Blade",
+		Model = ItemsModels:FindFirstChild("RazevengeBlade"),
+		Rarity = "Legendary"
+	},
+	{
+		Name = "GatlingLaser",
+		Model = ItemsModels:FindFirstChild("GatlingLaser"),
+		Rarity = "Legendary"
+	},
+	{
+		Name = "GatlingLaser",
+		Model = ItemsModels:FindFirstChild("GatlingLaser"),
+		Rarity = "Legendary"
 	},
 }
 
-return CommonItems
+return LegendaryItems

@@ -5,7 +5,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ServerStorage = game:GetService("ServerStorage")
 
 local INTERMISSION_TIME = 10
-local ROUND_TIME = 45
+local ROUND_TIME = 100
 local MIN_PLAYERS = 1
 
 local LevelSystem = {}
@@ -30,18 +30,14 @@ local function shuffle(array)
     return array
 end
 
-local function TeleportPlayers(map)
+local function TeleportPlayers(map, players)
     local Spawns = map:FindFirstChild("Spawns"):GetChildren()
     local HouseSuffle = shuffle(Spawns)
 
     local i = 1
-    for _, plr in pairs(Players:GetPlayers()) do
-        if not plr.Character then
-            continue
-        end
-
+    for _, plr in pairs(players) do
         plr.Character:PivotTo(HouseSuffle[i].CFrame)
-
+        i = i + 1
     end
 end
 
@@ -58,22 +54,39 @@ function Intermission()
     Countdown(INTERMISSION_TIME)
 end
 
+local function GetPlayers()
+    local PlayerList = {}
+    for _, plr in pairs(Players:GetPlayers()) do
+        if not plr.Character then
+            continue
+        end
+        table.insert(PlayerList, plr)
+    end
+
+    return PlayerList
+end
+
 function StartRound(map)
     print("game started")
     workspace:SetAttribute("Game", "In Round")
     local MapClone = map:Clone()
     MapClone.Parent = workspace
     wait(1)
-    TeleportPlayers(MapClone)
+    local Players = GetPlayers()
+    TeleportPlayers(MapClone, Players)
+    LuckyBlockService:GiveLuckyBlock(Players)
 
     Countdown(ROUND_TIME)
     MapClone:Destroy()
+    for _, plr in pairs(Players) do
+        plr:LoadCharacter()
+    end
     print("game ended")
 end
 
 function LevelSystem.Init()
     while true do  
-        local PlayersList = Players:GetPlayers()
+        local PlayersList = GetPlayers()
         if #Players:GetPlayers() >= MIN_PLAYERS then 
             Intermission()
 
