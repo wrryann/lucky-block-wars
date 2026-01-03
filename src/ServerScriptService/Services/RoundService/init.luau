@@ -21,6 +21,18 @@ local function Countdown(time)
     end
 end
 
+local function GetPlayers()
+    local PlayerList = {}
+    for _, plr in pairs(game.Players:GetPlayers()) do
+        if not plr.Character then
+            continue
+        end
+        table.insert(PlayerList, plr)
+    end
+
+    return PlayerList
+end
+
 function Intermission()
     print("Intermission")
     workspace:SetAttribute("Game", "Intermission")
@@ -34,7 +46,7 @@ function LevelSystem.Init()
             Intermission()
 
             local RandomMap = Maps[math.random(#Maps)]
-            StartRound:Init(RandomMap)
+            StartRound.Init(RandomMap)
 
         else    
             wait(1)

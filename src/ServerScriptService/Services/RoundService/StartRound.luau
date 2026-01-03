@@ -64,11 +64,13 @@ local function GiveBounty(hum)
     end
 
     -- change if dont work
-    local killer = LastCreator.Value
+    if LastCreator then
+        local killer = LastCreator.Value
 
-    if killer then
-        Manager.UpdateData(killer, "Cash", 10)
-        Manager.UpdateData(killer, "Kills", 1)
+        if killer then
+            Manager.UpdateData(killer, "Cash", 10)
+            Manager.UpdateData(killer, "Kills", 1)
+        end
     end
     
 end 
@@ -91,6 +93,7 @@ local function WatchPlayers(plrs)
         hum.Died:Connect(function()
             GiveBounty(hum)
 
+
             for i, p in ipairs(plrs) do
                 if p == plr then
                     table.remove(plrs, i)
@@ -98,13 +101,19 @@ local function WatchPlayers(plrs)
                 end
             end
 
-            if #plrs == 1 and plrs[1] then
+            print(#plrs)
+
+            if #plrs == 1 then
+                print("won")
                 Winner = plrs[1]
                 RoundActive = false
-            elseif #plrs > 0 then
+            elseif #plrs >= 0 then
+                RoundActive = false
                 return 
             end
         end)
+
+        -- player leaves
     end
 
     return Winner
@@ -113,7 +122,7 @@ end
 
 function StartRound.Init(Map)
     print("game started")
-    workspace:SetAttribute("Game", "In Round")
+    workspace:SetAttribute("Game", "Loading")
 
     RoundActive = true
 
@@ -121,6 +130,8 @@ function StartRound.Init(Map)
     MapClone.Parent = workspace
 
     wait(5)
+
+    workspace:SetAttribute("Game", "In Round")
 
     local Players = GetPlayers()
     TeleportPlayers(MapClone, Players)
@@ -136,7 +147,7 @@ function StartRound.Init(Map)
     MapClone:Destroy()
 
     for _, plr in pairs(Players) do
-        plr:LoadCharacter()
+        plr:LoadCharacterAsync()
     end
 
     task.delay(2, function()

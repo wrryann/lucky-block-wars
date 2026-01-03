@@ -5,7 +5,7 @@ local Manager = require(game.ServerScriptService.PlayerData.Manager)
 
 local Players = game:GetService("Players")
 local ProfileStore = ProfileService.GetProfileStore(
-	"Main",
+	"Main_",
 	Template
 )
 
