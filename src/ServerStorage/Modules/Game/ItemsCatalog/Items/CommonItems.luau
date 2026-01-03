@@ -42,11 +42,6 @@ local CommonItems = {
 		Rarity = "Common"
 	},
 	{
-		Name = "Spy Drone",
-		Model = ItemsModels:FindFirstChild("SpyDrone"),
-		Rarity = "Common"
-	},
-	{
 		Name = "Roman Catapult",
 		Model = ItemsModels:FindFirstChild("RomanCatapult"),
 		Rarity = "Common"

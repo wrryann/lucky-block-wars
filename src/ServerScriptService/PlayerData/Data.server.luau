@@ -5,7 +5,7 @@ local Manager = require(game.ServerScriptService.PlayerData.Manager)
 
 local Players = game:GetService("Players")
 local ProfileStore = ProfileService.GetProfileStore(
-	"main",
+	"Main",
 	Template
 )
 
@@ -17,13 +17,13 @@ local function Leaderstats(player)
 	local Leaderstats = Instance.new("Folder", player)
 	Leaderstats.Name = "leaderstats"
 
-	local Kills = Instance.new("IntValue", Leaderstats)
-	Kills.Name = "Kills"
-	Kills.Value = profile.Data.Kills
-
 	local Coins = Instance.new("IntValue", Leaderstats)
 	Coins.Name = "Coins"
 	Coins.Value = profile.Data.Coins
+
+	local Kills = Instance.new("IntValue", Leaderstats)
+	Kills.Name = "Kills"
+	Kills.Value = profile.Data.Kills
 
 end
 	

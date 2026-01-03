@@ -5,6 +5,7 @@ local LuckyBlockCatalog = require(ReplicatedStorage.Modules.Game.LuckyBlockCatal
 local template = {
 	Coins = 0,
 	Kills = 0,
+	Wins = 0,
 
 	EquippedLuckyBlock = "DefaultLuckyBlock",
 
