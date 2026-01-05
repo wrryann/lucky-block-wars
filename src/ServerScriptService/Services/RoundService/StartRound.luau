@@ -9,6 +9,7 @@ local Manager = require(ServerScriptService.PlayerData.Manager)
 local WinnerModel = workspace.Lobby -- change
 
 local RoundActive = false
+local Winner
 
 local function Countdown(time)
     for i = time, 1, -1 do
@@ -68,6 +69,7 @@ local function GiveBounty(hum)
         local killer = LastCreator.Value
 
         if killer then
+            warn(killer.Name .. " Killed".. hum.Parent.Name)
             Manager.UpdateData(killer, "Coins", 10)
             Manager.UpdateData(killer, "Kills", 1)
         end
@@ -78,12 +80,12 @@ end
 local function AwardWinners(winner, players)
     Manager.UpdateData(winner, "Coins", #players * 10)
     Manager.UpdateData(winner, "Wins", 1)
+
+    warn(winner.Name .. " has won the round!")
 end
 
 local function WatchPlayers(plrs)
-    local Winner
-
-    for _, plr in ipairs(plrs) do
+    for i, plr in ipairs(plrs) do
         local char = plr.Character
         if not char then continue end
 
@@ -93,21 +95,13 @@ local function WatchPlayers(plrs)
         hum.Died:Connect(function()
             GiveBounty(hum)
 
-
-            for i, p in ipairs(plrs) do
-                if p == plr then
-                    table.remove(plrs, i)
-                    break
-                end
-            end
-
-            print(#plrs)
+            table.remove(plrs, i)
 
             if #plrs == 1 then
-                print("won")
+                warn(plr)
                 Winner = plrs[1]
                 RoundActive = false
-            elseif #plrs >= 0 then
+            elseif #plrs <= 0 then
                 RoundActive = false
                 return 
             end
@@ -115,16 +109,14 @@ local function WatchPlayers(plrs)
 
         -- player leaves
     end
-
-    return Winner
 end
    
 
 function StartRound.Init(Map)
-    print("game started")
     workspace:SetAttribute("Game", "Loading")
 
     RoundActive = true
+    Winner = nil
 
     local MapClone = Map:Clone()
     MapClone.Parent = workspace
@@ -136,25 +128,20 @@ function StartRound.Init(Map)
     local Players = GetPlayers()
     TeleportPlayers(MapClone, Players)
     LuckyBlockService:GiveLuckyBlock(Players)
-    local Winner = WatchPlayers(Players)
+    WatchPlayers(Players)
 
     Countdown(ROUND_TIME)
 
-    print("game ended")
-
     RoundActive = false
-
-    MapClone:Destroy()
 
     for _, plr in pairs(Players) do
         plr:LoadCharacterAsync()
     end
 
-    task.delay(2, function()
-        if not Winner then return end
-        AwardWinners(Winner, Players)
-    end)
+    MapClone:Destroy()
 
+    if not Winner then return end
+    AwardWinners(Winner, Players)
 end
 
 return StartRound

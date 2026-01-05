@@ -21,9 +21,9 @@ local function Leaderstats(player)
 	Coins.Name = "Coins"
 	Coins.Value = profile.Data.Coins
 
-	local Kills = Instance.new("IntValue", Leaderstats)
-	Kills.Name = "Kills"
-	Kills.Value = profile.Data.Kills
+	local Wins = Instance.new("IntValue", Leaderstats)
+	Wins.Name = "Wins"
+	Wins.Value = profile.Data.Wins
 
 end
 	
