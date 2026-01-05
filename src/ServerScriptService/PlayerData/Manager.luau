@@ -25,11 +25,11 @@ function Manager.UpdateData(player, Item, amount)
 
 	local leaderstats = player:FindFirstChild("leaderstats")
 	if leaderstats then
-		local cash = leaderstats:FindFirstChild("cash")
-		local kills = leaderstats:FindFirstChild("kills")
-		if cash or kills then
-			cash.Value = Profile.Data.Cash 
-			kills.Value = Profile.Data.Kills 
+		local Coins = leaderstats:FindFirstChild("Coins")
+		local Kills = leaderstats:FindFirstChild("Kills")
+		if Coins or Kills then
+			Coins.Value = Profile.Data.Cash 
+			Kills.Value = Profile.Data.Kills 
 		end
 	end
 

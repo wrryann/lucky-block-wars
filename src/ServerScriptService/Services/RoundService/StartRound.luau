@@ -68,7 +68,7 @@ local function GiveBounty(hum)
         local killer = LastCreator.Value
 
         if killer then
-            Manager.UpdateData(killer, "Cash", 10)
+            Manager.UpdateData(killer, "Coins", 10)
             Manager.UpdateData(killer, "Kills", 1)
         end
     end
@@ -76,7 +76,7 @@ local function GiveBounty(hum)
 end 
 
 local function AwardWinners(winner, players)
-    Manager.UpdateData(winner, "Cash", #players * 10)
+    Manager.UpdateData(winner, "Coins", #players * 10)
     Manager.UpdateData(winner, "Wins", 1)
 end
 
