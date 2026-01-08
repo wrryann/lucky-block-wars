@@ -23,7 +23,7 @@ local CommonItems = {
 	},
 	{
 		Name = "Regen Coil",
-		Model = ItemsModels:FindFirstChild("RegenCoil"),
+		Model = ItemsModels:FindFirstChild("Regen Coil"),
 		Rarity = "Common"
 	},
 	{

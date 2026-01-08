@@ -1,3 +1,4 @@
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerStorage = game:GetService("ServerStorage")
 local ItemsCatalog = require(ServerStorage.Modules.Game.ItemsCatalog)
@@ -54,26 +55,32 @@ function GetRarity(ChanceTable)
 	end
 end
 
-function LuckyBlockSystem:GetRandomItem()
+function LuckyBlockSystem:GetRandomItem(char)
 	local Rarity = GetRarity(self.RarityTable)
 
-	if Rarity == "Common" then
-		return ItemsCatalog.GetRandomItem("Common")
-	elseif Rarity == "Uncommon" then
-		return ItemsCatalog.GetRandomItem("Uncommon")
-	elseif Rarity == "Rare" then
-		return ItemsCatalog.GetRandomItem("Rare")
-	elseif Rarity == "Epic" then
-		return ItemsCatalog.GetRandomItem("Epic")
-	elseif Rarity == "Legendary" then
-		return ItemsCatalog.GetRandomItem("Legendary")
-	elseif Rarity == "Godly" then
-		return ItemsCatalog.GetRandomItem("Godly")
-	elseif Rarity == "Mythic" then
-		return ItemsCatalog.GetRandomItem("Mythic")
-	end
+	local Item 
+	local Attempts = 0
+	repeat
+		print("working on itn")
+		if not Item then
+			Item = ItemsCatalog.GetRandomItem(Rarity)
+		else
+			local ItemIndex = table.find(ItemsCatalog[Rarity], Item)
+			Item = ItemsCatalog.GetRandomItem(Rarity, ItemIndex)
+		end
+		task.wait()
+		Attempts += 1
+		if Attempts >= 500 then
+			UiNotificaion.SendText(
+				Players:GetPlayerFromCharacter(char),
+				"ERROR, Try Opening Again!",
+				Color3.fromRGB(255, 0, 0)
+			)
+			return
+		end
+	until Item and not char:GetAttribute(Item.Name:gsub("%s+", "_"))
 
-	return nil
+	return Item
 end
 
 local function RarityColor(Rarity)
@@ -102,13 +109,18 @@ end
 
 
 function LuckyBlockSystem:Open(Player, LuckyBlockTool)
-	local RandomItem = self:GetRandomItem()
+	local Character = Player.Character
+
+	local RandomItem = self:GetRandomItem(Character)
 	if not RandomItem then return end
+
+	local itemName = RandomItem.Name:gsub("%s+", "_")
+	Character:SetAttribute(itemName, true)
 
 	LuckyBlockTool:Destroy()
 
 	local Weapon = RandomItem.Model:Clone()
-	Weapon.Parent = Player.Backpack
+	Weapon.Parent = Player:WaitForChild("Backpack")
 
 	UiNotificaion.SendText(
 		Player,

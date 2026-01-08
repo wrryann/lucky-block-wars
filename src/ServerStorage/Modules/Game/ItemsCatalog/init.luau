@@ -3,12 +3,18 @@ local Catalog = {}
 
 local ItemsFolder = script.Items
 
-function Catalog.GetRandomItem(rarity: string)
+function Catalog.GetRandomItem(rarity: string, ExcludedIndex: number?)
     local itemsList = Catalog[rarity]
     if itemsList then
-        local randomIndex = math.random(1, #itemsList)
-        return itemsList[randomIndex]
+        while true do
+            local randomIndex = math.random(1, #itemsList)
+            if randomIndex == ExcludedIndex then
+                continue
+            end
+            return itemsList[randomIndex]
+        end
     end
+
     return nil
 end
 

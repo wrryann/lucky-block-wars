@@ -5,6 +5,7 @@ local ROUND_TIME = 100
 
 local LuckyBlockService = require(ServerScriptService.Services.LuckyBlockService)
 local Manager = require(ServerScriptService.PlayerData.Manager)
+local Transition = require(game.ReplicatedStorage.UI.Transition.Transition)
 
 local WinnerModel = workspace.Lobby -- change
 
@@ -74,7 +75,6 @@ local function GiveBounty(hum)
             Manager.UpdateData(killer, "Kills", 1)
         end
     end
-    
 end 
 
 local function AwardWinners(winner, players)
@@ -126,6 +126,11 @@ function StartRound.Init(Map)
     workspace:SetAttribute("Game", "In Round")
 
     local Players = GetPlayers()
+
+    for _, plr in pairs(Players) do
+        Transition.StartTransition(plr, 1, "Teleporting...")
+    end
+
     TeleportPlayers(MapClone, Players)
     LuckyBlockService:GiveLuckyBlock(Players)
     WatchPlayers(Players)
@@ -135,6 +140,7 @@ function StartRound.Init(Map)
     RoundActive = false
 
     for _, plr in pairs(Players) do
+        Transition.StartTransition(plr, 1, "Going back to the lobby...")
         plr:LoadCharacterAsync()
     end
 

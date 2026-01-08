@@ -1,14 +1,15 @@
 local Players = game:GetService("Players")
-local UI = Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Shop")
+local Screen = Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Screen")
+local ShopUI = Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("RobloxShop")
 
 local Shop = {}
 
 function Shop:Init()
-    UI.ShopButton.Activated:Connect(Shop:OpenShop())
+--    Screen.ShopButton.ImageButton.Activated:Connect(Shop:OpenShop())
 end
 
 function Shop:OpenShop()
-    
+--    ShopUI.Enabled = true
 end
 
 return Shop

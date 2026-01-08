@@ -27,11 +27,6 @@ local UncommonItems = {
 		Rarity = "Uncommon"
 	},
 	{
-		Name = "RegenCoil",
-		Model = ItemsModels:FindFirstChild("RegenCoil"),
-		Rarity = "Uncommon"
-	},
-	{
 		Name = "Dragon Mouth Fire Sword",
 		Model = ItemsModels:FindFirstChild("Dragon Mouth Fire Sword"),
 		Rarity = "Uncommon"
