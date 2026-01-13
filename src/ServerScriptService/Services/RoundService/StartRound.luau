@@ -1,7 +1,7 @@
 local ServerScriptService = game:GetService("ServerScriptService")
 local StartRound = {}
 
-local ROUND_TIME = 100
+local ROUND_TIME = 500
 
 local LuckyBlockService = require(ServerScriptService.Services.LuckyBlockService)
 local Manager = require(ServerScriptService.PlayerData.Manager)
@@ -9,12 +9,12 @@ local Transition = require(game.ReplicatedStorage.UI.Transition.Transition)
 
 local WinnerModel = workspace.Lobby -- change
 
-local RoundActive = false
+StartRound.RoundActive = false
 local Winner
 
 local function Countdown(time)
     for i = time, 1, -1 do
-        if not RoundActive then
+        if not StartRound.RoundActive then
             return
         end
         workspace:SetAttribute("Time", i)
@@ -53,7 +53,7 @@ local function TeleportPlayers(MapToTeleport, players)
     end
 end
 
-local function GiveBounty(hum)
+local function GiveBounty(hum, player)
     local LastCreator = nil
 
     local children = hum:GetChildren()
@@ -66,7 +66,7 @@ local function GiveBounty(hum)
     end
 
     -- change if dont work
-    if LastCreator then
+    if LastCreator and LastCreator ~= player then
         local killer = LastCreator.Value
 
         if killer then
@@ -93,16 +93,16 @@ local function WatchPlayers(plrs)
         if not hum then continue end
 
         hum.Died:Connect(function()
-            GiveBounty(hum)
+            GiveBounty(hum, plr)
 
             table.remove(plrs, i)
 
             if #plrs == 1 then
                 warn(plr)
                 Winner = plrs[1]
-                RoundActive = false
+                StartRound.RoundActive = false
             elseif #plrs <= 0 then
-                RoundActive = false
+                StartRound.RoundActive = false
                 return 
             end
         end)
@@ -115,7 +115,7 @@ end
 function StartRound.Init(Map)
     workspace:SetAttribute("Game", "Loading")
 
-    RoundActive = true
+    StartRound.RoundActive = true
     Winner = nil
 
     local MapClone = Map:Clone()
@@ -137,7 +137,7 @@ function StartRound.Init(Map)
 
     Countdown(ROUND_TIME)
 
-    RoundActive = false
+    StartRound.RoundActive = false
 
     for _, plr in pairs(Players) do
         Transition.StartTransition(plr, 1, "Going back to the lobby...")

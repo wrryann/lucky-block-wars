@@ -1,10 +1,11 @@
-local ServerStorage = game:GetService("ServerStorage")
-local LuckyBlockModels = ServerStorage.Assets.LuckyBlockModels
-local LuckyBlockClass = require(game.ReplicatedStorage.Classes.LuckyBlock)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LuckyBlockModels = ReplicatedStorage.Assets.LuckyBlockModels
 
-local LuckyBlockCatalog: {LuckyBlockClass.LuckyBlock} = {
+local LuckyBlockCatalog = {
 	DefaultLuckyBlock = {
 		DisplayName = "Default Lucky Block",
+		Price = 0,
+		Description = "The classic lucky block everyone knows and Hate!",
 		Model = LuckyBlockModels.DefaultLuckyBlock,
 		RarityTable = {
 			Poopy = 5,
@@ -20,6 +21,8 @@ local LuckyBlockCatalog: {LuckyBlockClass.LuckyBlock} = {
 	},
 	InsaneLuckyBlock = {
 		DisplayName = "Insane Lucky Block",
+		Price = 100_000,
+		Description = "The classic lucky block everyone knows and Hate!",
 		Model = LuckyBlockModels.InsaneLuckyBlock,
 		RarityTable = {
 			Poopy = 10,

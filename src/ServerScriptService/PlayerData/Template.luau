@@ -10,7 +10,10 @@ local template = {
 	EquippedLuckyBlock = "DefaultLuckyBlock",
 
 	Inventory = {
-		LuckyBlocks = {},
+		LuckyBlocks = {
+			DefaultLuckyBlock = true,
+			
+		},
 	},
 	
 	Tutorial = false,

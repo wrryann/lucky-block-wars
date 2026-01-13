@@ -1,7 +1,6 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local ServerStorage = game:GetService("ServerStorage")
-local ItemsCatalog = require(ServerStorage.Modules.Game.ItemsCatalog)
+local ItemsCatalog = require(ReplicatedStorage.Modules.Game.ItemsCatalog)
 local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification)
 
 local LuckyBlockSystem = {}
@@ -58,15 +57,15 @@ end
 function LuckyBlockSystem:GetRandomItem(char)
 	local Rarity = GetRarity(self.RarityTable)
 
-	local Item 
+	local Tool, Item
 	local Attempts = 0
 	repeat
 		print("working on itn")
 		if not Item then
-			Item = ItemsCatalog.GetRandomItem(Rarity)
+			Tool, Item = ItemsCatalog.GetRandomItem(Rarity)
 		else
 			local ItemIndex = table.find(ItemsCatalog[Rarity], Item)
-			Item = ItemsCatalog.GetRandomItem(Rarity, ItemIndex)
+			Tool, Item = ItemsCatalog.GetRandomItem(Rarity, ItemIndex)
 		end
 		task.wait()
 		Attempts += 1
@@ -80,12 +79,12 @@ function LuckyBlockSystem:GetRandomItem(char)
 		end
 	until Item and not char:GetAttribute(Item.Name:gsub("%s+", "_"))
 
-	return Item
+	return Tool, Item
 end
 
 local function RarityColor(Rarity)
 	if Rarity == "Poopy" then
-		return Color3.fromRGB(53, 33, 23)
+		return Color3.fromRGB(126, 110, 79)
 	elseif Rarity == "Common" then
 		return Color3.fromRGB(145, 145, 145)
 	elseif Rarity == "Uncommon" then
@@ -99,7 +98,7 @@ local function RarityColor(Rarity)
 	elseif Rarity == "Godly" then
 		return Color3.fromRGB(253, 250, 187)
 	elseif Rarity == "Mythic" then
-		return Color3.fromRGB(62, 3, 97)
+		return "rainbow"	
 	elseif Rarity == "Mystery" then
 		return Color3.fromRGB(0, 0, 0)
 	end
@@ -111,21 +110,21 @@ end
 function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 	local Character = Player.Character
 
-	local RandomItem = self:GetRandomItem(Character)
-	if not RandomItem then return end
+	local Tool, Item = self:GetRandomItem(Character)
+	if not Item then return end
 
-	local itemName = RandomItem.Name:gsub("%s+", "_")
+	local itemName = Item.Name:gsub("%s+", "_")
 	Character:SetAttribute(itemName, true)
 
 	LuckyBlockTool:Destroy()
 
-	local Weapon = RandomItem.Model:Clone()
+	local Weapon = Tool:Clone()
 	Weapon.Parent = Player:WaitForChild("Backpack")
 
 	UiNotificaion.SendText(
 		Player,
-		"you got a "..RandomItem.Name,
-		RarityColor(RandomItem.Rarity)
+		"you got a "..Item.Name,
+		RarityColor(Item.Rarity)
 	)
 
 end

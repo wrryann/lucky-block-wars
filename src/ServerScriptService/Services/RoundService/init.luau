@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local ServerStorage = game:GetService("ServerStorage")
 
-local INTERMISSION_TIME = 5
+local INTERMISSION_TIME = 45
 local MIN_PLAYERS = 1
 
 local LevelSystem = {}
