@@ -44,6 +44,19 @@ function Manager.UpdateData(player, Item, amount)
 	return Data 
 end
 
+function Manager.SetPlayerDataField(player, Field, Value)
+	local Profile = Manager.profiles[player]
+	if not Profile or not Profile.Data then return end
+
+	local Data = Profile.Data
+
+	Data[Field] = Value
+
+	DataUpdated:FireClient(player, Profile.Data)
+
+	return Data 
+end
+
 function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
 	local Profile = Manager.profiles[player]
 	if not Profile then return end
@@ -51,7 +64,7 @@ function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
 	local Data = Profile.Data
 
 	if Data.Coins - Price >= 0 then
-		Data.Coins = Data.Coins - Price
+		Manager.UpdateData(player, "Coins", -Price)
 		Data.Inventory.LuckyBlocks[LuckyBlock] = true
 
 		DataUpdated:FireClient(player, Profile.Data)

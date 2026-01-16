@@ -54,6 +54,51 @@ local RareItems = {
 		ModelName = "RocketLauncher",
 		Rarity = "Rare"
 	},
+	{
+		Name = "Farmers Revenge",
+		Id = "101106419",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Knights Elder Blade",
+		Id = "48395736",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Knights of RedCliff Battle Horn",
+		Id = "114020505",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Disintergrex Blast Gun",
+		Id = "18268645",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Staff of Shifting Polarity",
+		Id = "61459706",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Korblox Ice Claws",
+		Id = "223785065",
+		Rarity = "Rare"
+	},
+	{
+		Name = "RAIG Table",
+		Id = "110789105",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Red Convertible",
+		Id = "164207580",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Enchanted Bat Flying Potion",
+		Id = "63721732",
+		Rarity = "Rare"
+	},
 
 }
 

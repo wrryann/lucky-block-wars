@@ -55,7 +55,7 @@ local function PlayerAdded(player)
 		end)
 		if player:IsDescendantOf(Players) == true then
 			Profiles[player] = profile
-			print(Profiles[player])
+			print(Profiles[player].Data)
 			Leaderstats(player)
 		else
 			-- Player left before the profile loaded:

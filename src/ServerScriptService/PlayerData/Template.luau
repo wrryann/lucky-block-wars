@@ -17,6 +17,7 @@ local template = {
 	},
 	
 	Tutorial = false,
+	Country = "Unknown",
 }
 
 return template

@@ -7,7 +7,7 @@ Shop.Notifications = {}
 
 function Shop.SendText(Plr: Player, Text: string, color)
     local UI = ReplicatedStorage.Assets.UI.Notifications
-    local ScreenGui = Plr:WaitForChild("PlayerGui"):WaitForChild("Screen")
+    local ScreenGui = Plr:WaitForChild("PlayerGui"):WaitForChild("Notifications")
 
     if color == "rainbow" then
         color = Color3.fromHSV(tick() % 5 / 5, 1, 1)

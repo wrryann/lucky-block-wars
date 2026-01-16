@@ -44,6 +44,51 @@ local UncommonItems = {
 		Id = "18481407",
 		Rarity = "Uncommon"
 	},
+	{
+		Name = "Interplanetary Light Sword",
+		Id = "1033136271",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Knights of Redcliff Battle Axe",
+		Id = "49929724",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Knights of the Splintered Skies Ballista",
+		Id = "55917432",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Knights of Redcliff Sword and Shield",
+		Id = "49929767",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Gear Cloner",
+		Id = "97161295",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Transmorph Ray Gun",
+		Id = "29099749",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Darksteel Katana of Ancient Illuminators",
+		Id = "86494893",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Vine Staff",
+		Id = "30847733",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Flying Dragon",
+		Id = "610133821",
+		Rarity = "Uncommon"
+	},
 	
 }
 

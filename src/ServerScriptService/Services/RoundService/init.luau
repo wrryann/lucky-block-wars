@@ -4,8 +4,10 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local ServerStorage = game:GetService("ServerStorage")
 
+local InvitePlayersGui = ReplicatedStorage.Assets.UI.InveteFriends.Main
+
 local INTERMISSION_TIME = 45
-local MIN_PLAYERS = 1
+local MIN_PLAYERS = 2
 
 local LevelSystem = {}
 
@@ -39,19 +41,32 @@ function Intermission()
     Countdown(INTERMISSION_TIME)
 end
 
+local EnoughPlayers = false
+
 function LevelSystem.Init()
+    Players.PlayerAdded:Connect(function(plr)
+        task.delay(5, function()
+            if not EnoughPlayers then
+                local PlayerGui = plr:WaitForChild("PlayerGui")
+                InvitePlayersGui:Clone().Parent = PlayerGui:WaitForChild("Screen")
+                PlayerGui:WaitForChild("SFX"):WaitForChild("ErrorWindows"):Play()
+            end
+        end)
+    end)
+
     while true do  
         local PlayersList = GetPlayers()
         if #Players:GetPlayers() >= MIN_PLAYERS then 
+            EnoughPlayers = true
             Intermission()
 
             local RandomMap = Maps[math.random(#Maps)]
             StartRound.Init(RandomMap)
 
         else    
+            EnoughPlayers = false
             wait(1)
             workspace:SetAttribute("Game", "Waiting for Players")
-            print("not enough players")
         end
         
     end

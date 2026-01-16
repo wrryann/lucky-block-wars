@@ -34,6 +34,41 @@ local LegendaryItems = {
 		Id = "89487934",
 		Rarity = "Legendary"
 	},
+		{
+		Name = "Stop Hitting Yourself",
+		Id = "91360104",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Poseidons Quake Trident",
+		Id = "54130559",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Carnagecopia",
+		Id = "98346415",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Skeleton Scythe",
+		Id = "95951330",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Spectral Sword of Illusions",
+		Id = "68848741",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Super Spy Laser Blaster",
+		Id = "208659734",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Knights of the Splintered Skies Lightning Staff",
+		ModelName = "KotSSLightningStaff",
+		Rarity = "Legendary"
+	},
 }
 
 return LegendaryItems

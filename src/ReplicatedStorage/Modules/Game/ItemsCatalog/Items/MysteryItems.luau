@@ -9,6 +9,11 @@ local MysteryItems = {
 		Id = "159229806",
 		Rarity = "Mystery"
 	},
+	{
+		Name = "Kami Potion",
+		Id = "66426498",
+		Rarity = "Mystery"
+	},
 }
 
 return MysteryItems

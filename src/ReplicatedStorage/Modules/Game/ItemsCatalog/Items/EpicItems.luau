@@ -49,6 +49,56 @@ local EpicItems = {
 		Id = "26421972",
 		Rarity = "Epic"
 	},
+	{
+		Name = "Bat Knight Bat Sword",
+		Id = "17680660",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Land Shark Shooter",
+		Id = "118281463",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Z Ray Gun",
+		Id = "65082275",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Mostly Ghostly Potion",
+		Id = "527384527",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Laser Electrocutor Blade",
+		Id = "50938773",
+		Rarity = "Epic"
+	},
+	{
+		Name = "M1 Garand",
+		Id = "94233286",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Mega Mallet",
+		Id = "746687364",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Earth Summoning Horn",
+		Id = "236403380",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Remote Mine",
+		Id = "33383241",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Gigantic Bat Wings",
+		Id = "1074738432",
+		Rarity = "Epic"
+	},
 }
 
 return EpicItems

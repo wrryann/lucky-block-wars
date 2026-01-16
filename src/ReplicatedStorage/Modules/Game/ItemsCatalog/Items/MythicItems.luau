@@ -19,6 +19,16 @@ local MythicItems = {
 		Id = "69499437",
 		Rarity = "Mythic"
 	},
+	{
+		Name = "Colossal Blade",
+		Id = "83704154",
+		Rarity = "Mythic"
+	},
+	{
+		Name = "Crescendo, The Soul Stealer",
+		Id = "94794774",
+		Rarity = "Mythic"
+	},
 }
 
 return MythicItems

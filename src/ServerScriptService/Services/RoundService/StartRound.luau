@@ -107,7 +107,19 @@ local function WatchPlayers(plrs)
             end
         end)
 
-        -- player leaves
+        game:GetService("Players").PlayerRemoving:Connect(function(removedPlr)
+            if removedPlr == plr then
+                table.remove(plrs, i)
+
+                if #plrs == 1 then
+                    Winner = plrs[1]
+                    StartRound.RoundActive = false
+                elseif #plrs <= 0 then
+                    StartRound.RoundActive = false
+                    return 
+                end
+            end
+        end)
     end
 end
    
