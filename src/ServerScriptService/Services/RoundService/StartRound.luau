@@ -1,7 +1,8 @@
 local ServerScriptService = game:GetService("ServerScriptService")
 local StartRound = {}
 
-local ROUND_TIME = 500
+local ROUND_TIME = 300
+local END_TIME = 10
 
 local LuckyBlockService = require(ServerScriptService.Services.LuckyBlockService)
 local Manager = require(ServerScriptService.PlayerData.Manager)
@@ -100,8 +101,10 @@ local function WatchPlayers(plrs)
             if #plrs == 1 then
                 warn(plr)
                 Winner = plrs[1]
+                task.wait(END_TIME)
                 StartRound.RoundActive = false
             elseif #plrs <= 0 then
+                task.wait(END_TIME)
                 StartRound.RoundActive = false
                 return 
             end

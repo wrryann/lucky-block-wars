@@ -9,7 +9,7 @@ local ItemsFolder = script.Items
 
 function Catalog.GetToolById(Id)
     local Model = InsertService:LoadAsset(Id)
-    Model.Parent = game.Workspace
+--    Model.Parent = game.Workspace
     local Item = Model:FindFirstChildOfClass("Tool")
     if Item then
         if Item.CanBeDropped then

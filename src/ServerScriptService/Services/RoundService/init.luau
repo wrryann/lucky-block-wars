@@ -7,7 +7,7 @@ local ServerStorage = game:GetService("ServerStorage")
 local InvitePlayersGui = ReplicatedStorage.Assets.UI.InveteFriends.Main
 
 local INTERMISSION_TIME = 45
-local MIN_PLAYERS = 2
+local MIN_PLAYERS = 1
 
 local LevelSystem = {}
 

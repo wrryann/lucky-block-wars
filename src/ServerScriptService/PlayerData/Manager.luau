@@ -1,3 +1,4 @@
+local MarketplaceService = game:GetService("MarketplaceService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Remotes = game.ReplicatedStorage.Events.Profile
 local DataUpdated = Remotes.DataUpdated
@@ -20,12 +21,29 @@ local function GetData(Player)
 end
 
 -- kill
+local function OwnsGamepass(player, gamepassId)
+	local success, result = pcall(function()
+		return MarketplaceService:UserOwnsGamePassAsync(player.UserId, gamepassId)
+	end)
+
+	if success then
+		return result
+	else
+		return false
+	end
+end
 
 function Manager.UpdateData(player, Item, amount)	
 	local Profile = Manager.profiles[player]
 	if not Profile or not Profile.Data then return end
 
 	local Data = Profile.Data
+
+	if Item == "Coins" and amount > 0 then
+		if OwnsGamepass(player, 1674211169) then
+			amount = amount * 2
+		end
+	end
 
 	Data[Item] = Data[Item] +  amount
 

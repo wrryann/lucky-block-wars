@@ -23,10 +23,10 @@ local UncommonItems = {
 		Name = "Dragon Mouth Fire Sword",
 		Id = "168140949",
 		Rarity = "Uncommon"
-	},
+	},	
 	{
 		Name = "Acceleration Coil",
-		Id = "99119158",
+		ModelName = "Acceleration Coil",
 		Rarity = "Uncommon"
 	},
 	{
