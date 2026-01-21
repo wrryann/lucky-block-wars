@@ -1,6 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
---Put the script in StarterPlayer --> StarterCharacterScripts
+local CAS = game:GetService("ContextActionService")
 
 local Player = game:GetService("Players").LocalPlayer
 local Character = workspace:WaitForChild(Player.Name)
@@ -40,6 +40,9 @@ RunService.RenderStepped:Connect(function()
             Running = false
             Humanoid.WalkSpeed = NormalSpeed
             RAnimation:Stop()
+			if Character:GetAttribute("Sprinting") then
+				Character:SetAttribute("Sprinting", false)
+			end
         end
     end
 end)
@@ -59,7 +62,20 @@ Humanoid.Running:connect(function(Speed)
 	end
 end)
 
-game:GetService('ContextActionService'):BindAction('RunBind', Handler, true, Enum.KeyCode[key])
+CAS:BindAction('RunBind', Handler, true, Enum.KeyCode[key])
+
+Character:GetAttributeChangedSignal("Sprinting"):Connect(function()
+	if Character:GetAttribute("Sprinting") then
+		Running = true
+		Humanoid.WalkSpeed = RunningSpeed
+	else
+		Running = false
+		if RAnimation.IsPlaying then
+			RAnimation:Stop()
+		end
+		Humanoid.WalkSpeed = NormalSpeed
+	end
+end)
 
 --Stop animation if...--
 Humanoid.Changed:connect(function()

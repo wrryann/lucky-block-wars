@@ -26,21 +26,6 @@ local function Leaderstats(player)
 	Wins.Value = profile.Data.Wins
 
 end
-	
---[	if not profile then return end
-	
---	local Cash = profile.Data.Cash
---	local Kills = profile.Data.Kills
---	local SwordLevel = profile.Data.Inventory.Sword.Level
---	local Data = profile.Data
-
-	-- return only what you need
---	return {
---		Data = Data,
---		Cash = Cash,
---		Kills = Kills,
---	}
-	--
 
 
 local function PlayerAdded(player)

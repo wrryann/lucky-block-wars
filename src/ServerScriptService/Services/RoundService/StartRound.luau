@@ -144,6 +144,19 @@ function StartRound.Init(Map)
 
     for _, plr in pairs(Players) do
         Transition.StartTransition(plr, 1, "Teleporting...")
+        local MainScriptMap = MapClone:FindFirstChild("_Main")
+        if MainScriptMap then
+            if MainScriptMap:isA("ModuleScript") then
+                local import = require(MainScriptMap)
+
+                if type(import) == "table" and type(import.Init) == "function" then
+                    task.spawn(function()
+                        import.Init(Players)
+                    end)
+                end
+            end
+        end
+
     end
 
     TeleportPlayers(MapClone, Players)
