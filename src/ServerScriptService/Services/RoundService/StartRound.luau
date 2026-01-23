@@ -1,4 +1,5 @@
 local ServerScriptService = game:GetService("ServerScriptService")
+local Teams = game:GetService("Teams")
 local StartRound = {}
 
 local ROUND_TIME = 300
@@ -71,7 +72,7 @@ local function GiveBounty(hum, player)
         local killer = LastCreator.Value
 
         if killer then
-            warn(killer.Name .. " Killed".. hum.Parent.Name)
+            print(killer.Name .. " Killed".. hum.Parent.Name)
             Manager.UpdateData(killer, "Coins", 10)
             Manager.UpdateData(killer, "Kills", 1)
         end
@@ -82,7 +83,7 @@ local function AwardWinners(winner, players)
     Manager.UpdateData(winner, "Coins", #players * 10)
     Manager.UpdateData(winner, "Wins", 1)
 
-    warn(winner.Name .. " has won the round!")
+    print(winner.Name .. " has won the round!")
 end
 
 local function WatchPlayers(plrs)
@@ -95,11 +96,11 @@ local function WatchPlayers(plrs)
 
         hum.Died:Connect(function()
             GiveBounty(hum, plr)
+            plr.Team = Teams.Spectators
 
             table.remove(plrs, i)
 
             if #plrs == 1 then
-                warn(plr)
                 Winner = plrs[1]
                 task.wait(END_TIME)
                 StartRound.RoundActive = false
@@ -144,6 +145,7 @@ function StartRound.Init(Map)
 
     for _, plr in pairs(Players) do
         Transition.StartTransition(plr, 1, "Teleporting...")
+        plr.Team = Teams.Players
         local MainScriptMap = MapClone:FindFirstChild("_Main")
         if MainScriptMap then
             if MainScriptMap:isA("ModuleScript") then
@@ -169,6 +171,7 @@ function StartRound.Init(Map)
 
     for _, plr in pairs(Players) do
         Transition.StartTransition(plr, 1, "Going back to the lobby...")
+        plr.Team = Teams.Spectators
         plr:LoadCharacterAsync()
     end
 

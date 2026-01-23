@@ -29,37 +29,52 @@ local LuckyShop = {}
 local ShopUI = Player:WaitForChild("PlayerGui"):WaitForChild("LuckyBlockShop")
 
 function LuckyShop.Init()
+    local listOrder = {}
 
-    for Name, LuckyBlock in pairs(LuckyBlockCatalog) do
+    for name, luckyBlock in pairs(LuckyBlockCatalog) do
+        table.insert(listOrder, {
+            Name = name,
+            Data = luckyBlock
+        })
+    end
+
+    table.sort(listOrder, function(a, b)
+        return a.Data.Price < b.Data.Price
+    end)
+
+    for _, item in ipairs(listOrder) do
+        local Name = item.Name
+        local LuckyBlock = item.Data
+
         LuckyShop.SetGui(
             Name,
             LuckyBlock.DisplayName,
             LuckyBlock.Model,
             LuckyBlock.Price,
-            LuckyBlock.Description, 
+            LuckyBlock.Description,
+            LuckyBlock.ImageID,
             LuckyBlock.RarityTable
         )
-    end     
+    end
 end
 
-function ChangeTab(Name, DisplayName, Model, Price, Description, RarityTable)
+function ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
     local Tab = ShopUI.Main.Frame.Tab
-    local NewModel = Model.LuckyBlock:Clone()
 
-    if Tab.ViewportFrame:FindFirstChild("LuckyBlock") then
-        Tab.ViewportFrame.LuckyBlock:Destroy()
+    if Tab.LuckyBlockImage then
+        Tab.LuckyBlockImage.Image = ImageID
     end
 
     Tab.Info.Description.Text = Description
     Tab.Tittle.Text = DisplayName
- 
-    NewModel:ScaleTo(19)
-    NewModel:PivotTo(CFrame.new(0, 0, 0))
 
-    NewModel.Parent = Tab.ViewportFrame
+    if Price ~= 9_999_999_999 then
+        Tab.Info.Cost.TextLabel.Text = Formater:Format(Price)
+    else
+        Tab.Info.Cost.TextLabel.Text = "\u{E002}$$$"
 
-    Tab.Info.Cost.TextLabel.Text = Formater:Format(Price)
-
+    end
+    
     local RarityTab = Tab.RarityTable.Info
     for DisplayName, Rarity in pairs(RarityTable) do
         if DisplayName == "Mystery" then
@@ -108,7 +123,16 @@ function ChangeTab(Name, DisplayName, Model, Price, Description, RarityTable)
             or input.UserInputType == Enum.UserInputType.Touch then
             
             if ButtonStatus == "Purchase" then
-                BuyEvent:FireServer(Name, Price)
+                if Price ~= 9_999_999_999 then
+                    BuyEvent:FireServer(Name, Price)
+                else
+                    UiNotificaion.SendText(
+                        Player,
+                        "Buy this on the shop",
+                        Color3.fromRGB(255, 0, 0)
+                    )
+                end
+                
             elseif ButtonStatus == "Equip" then
                 EquipEvent:FireServer(Name)
             else
@@ -123,31 +147,22 @@ function ChangeTab(Name, DisplayName, Model, Price, Description, RarityTable)
 
 end
 
-function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, RarityTable)
-    local rotating = false
+function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
     local BoyUshouldKnow = ShopUI.Parent.SFX.BoyUshouldKnow
 
     local NewLucky = LuckyBlockButton:Clone()
     NewLucky.Parent = ShopUI.Main.Frame.ScrollingFrame
     NewLucky.Tittle.Text = DisplayName
-    local NewModel = Model.LuckyBlock:Clone()
-    local primary = NewModel.PrimaryPart
-    NewModel:ScaleTo(19)
-    NewModel:PivotTo(CFrame.new(0, 0, 10))
 
-    local camera = Instance.new("Camera")
-    camera.CFrame = CFrame.new(0, 0, 38)
-    camera.Parent = NewLucky.Frame.ViewportFrame
-
-    NewLucky.Frame.ViewportFrame.CurrentCamera = camera
-    NewModel.Parent = NewLucky.Frame.ViewportFrame
+    local Image = NewLucky.Frame.LuckyImage
+    Image.Image = ImageID
 
     --===================================
 
     NewLucky.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1
             or input.UserInputType == Enum.UserInputType.Touch then
-            ChangeTab(Name, DisplayName, Model, Price, Description, RarityTable)
+            ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
         end
 
     end)
@@ -155,28 +170,8 @@ function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, RarityTa
     --=====================================
 
     NewLucky.MouseEnter:Connect(function()
-        rotating = true
         BoyUshouldKnow:Play()
     end)
-
-    -- here the code detects when the mouse leaves the UI element
-    NewLucky.MouseLeave:Connect(function()
-        rotating = false
-    end)
-
-    local originalPivot = NewModel:GetPivot()
-
-	RunService.RenderStepped:Connect(function()
-		if rotating and primary then
-			NewModel:PivotTo(
-				primary.CFrame *
-					CFrame.Angles(0, math.rad(2), 0)
-			)
-		elseif not rotating and NewModel:GetPivot() ~= originalPivot then
-			-- here the model returns to the original pivot only if it changed
-			NewModel:PivotTo(originalPivot)
-		end
-	end)
 
 end
 

@@ -1,10 +1,5 @@
 local EpicItems = {
 	{
-		Name = "Rainbow Magic Carpet",
-		Id = "225921000",
-		Rarity = "Epic"
-	},
-	{
 		Name = "Fast Potion",
 		Id = "154727251",
 		Rarity = "Epic"
@@ -65,11 +60,6 @@ local EpicItems = {
 		Rarity = "Epic"
 	},
 	{
-		Name = "Mostly Ghostly Potion",
-		Id = "527384527",
-		Rarity = "Epic"
-	},
-	{
 		Name = "Laser Electrocutor Blade",
 		Id = "50938773",
 		Rarity = "Epic"
@@ -92,11 +82,6 @@ local EpicItems = {
 	{
 		Name = "Remote Mine",
 		Id = "33383241",
-		Rarity = "Epic"
-	},
-	{
-		Name = "Gigantic Bat Wings",
-		Id = "1074738432",
 		Rarity = "Epic"
 	},
 }

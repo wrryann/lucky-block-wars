@@ -94,11 +94,6 @@ local RareItems = {
 		Id = "164207580",
 		Rarity = "Rare"
 	},
-	{
-		Name = "Enchanted Bat Flying Potion",
-		Id = "63721732",
-		Rarity = "Rare"
-	},
 
 }
 
