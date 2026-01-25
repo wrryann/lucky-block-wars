@@ -84,11 +84,6 @@ local UncommonItems = {
 		Id = "30847733",
 		Rarity = "Uncommon"
 	},
-	{
-		Name = "Flying Dragon",
-		Id = "610133821",
-		Rarity = "Uncommon"
-	},
 	
 }
 

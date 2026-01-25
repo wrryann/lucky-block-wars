@@ -84,6 +84,22 @@ local EpicItems = {
 		Id = "33383241",
 		Rarity = "Epic"
 	},
+	{
+		Name = "Mostly Ghostly Potion",
+		Id = "527384527",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Rainbow Magic Carpet",
+		Id = "225921000",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Gigantic Bat Wings",
+		Id = "1074738432",
+		Rarity = "Epic"
+	},
+	
 }
 
 return EpicItems

@@ -15,11 +15,6 @@ local PoopyItems = {
 		Rarity = "Poopy"
 	},
 	{
-		Name = "Slingshot",
-		Id = "33382537",
-		Rarity = "Poopy"
-	},
-	{
 		Name = "Banana Peel",
 		Id = "29100449",
 		Rarity = "Poopy"
@@ -27,11 +22,6 @@ local PoopyItems = {
 	{
 		Name = "Earths Might Staff",
 		Id = "102705386",
-		Rarity = "Poopy"
-	},
-	{
-		Name = "Deluxe Snowball Cannon 3000",
-		Id = "67755182",
 		Rarity = "Poopy"
 	},
 	{

@@ -28,7 +28,7 @@ local function OwnsGamepass(player, gamepassId)
 
 	if success then
 		return result
-	else
+	else 
 		return false
 	end
 end
@@ -40,6 +40,10 @@ function Manager.UpdateData(player, Item, amount)
 	local Data = Profile.Data
 
 	if Item == "Coins" and amount > 0 then
+		if player:IsInGroup(35799359) and amount >= 5 then
+			amount = amount + 5
+		end
+
 		if OwnsGamepass(player, 1674211169) then
 			amount = amount * 2
 		end

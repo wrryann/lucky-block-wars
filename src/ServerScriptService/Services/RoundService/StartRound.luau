@@ -130,6 +130,7 @@ end
 
 function StartRound.Init(Map)
     workspace:SetAttribute("Game", "Loading")
+    workspace:SetAttribute("Map", Map.Name)
 
     StartRound.RoundActive = true
     Winner = nil

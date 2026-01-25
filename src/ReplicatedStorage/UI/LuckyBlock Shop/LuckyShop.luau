@@ -157,6 +157,8 @@ function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID,
     local Image = NewLucky.Frame.LuckyImage
     Image.Image = ImageID
 
+    local UiStroke = NewLucky.UIStroke
+
     --===================================
 
     NewLucky.InputBegan:Connect(function(input)
@@ -171,6 +173,11 @@ function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID,
 
     NewLucky.MouseEnter:Connect(function()
         BoyUshouldKnow:Play()
+        UiStroke.Transparency = 0.2
+    end)
+
+    NewLucky.MouseLeave:Connect(function()
+        UiStroke.Transparency = 0.8
     end)
 
 end

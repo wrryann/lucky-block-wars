@@ -75,11 +75,6 @@ local RareItems = {
 		Rarity = "Rare"
 	},
 	{
-		Name = "Staff of Shifting Polarity",
-		Id = "61459706",
-		Rarity = "Rare"
-	},
-	{
 		Name = "Korblox Ice Claws",
 		Id = "223785065",
 		Rarity = "Rare"
@@ -92,6 +87,11 @@ local RareItems = {
 	{
 		Name = "Red Convertible",
 		Id = "164207580",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Enchanted Bat Flying Potion",
+		Id = "63721732",
 		Rarity = "Rare"
 	},
 
