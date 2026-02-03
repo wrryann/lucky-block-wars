@@ -15,8 +15,22 @@ local GamepassList = {
     1678020911, -- white lucky
 }
 
+--=================
+
 GamepassHandler[1678020911] = function(player)  -- white lucky
+    if Manager.profiles[player].Data.Inventory.LuckyBlocks.UnhingedLuckyBlock then return end
     Manager.BuyLuckyBlock(player, "UnhingedLuckyBlock", 0)
+end
+
+--=================
+
+ProductsHandler[3524581937] = function(receipt, player)  -- Respawn
+    local StartRound = require(ServerScriptService.Services.RoundService.StartRound)
+    StartRound.RespawnPlayer(player)
+    if player.PlayerGui:FindFirstChild("Respawn") then
+        player.PlayerGui:FindFirstChild("Respawn"):Destroy()
+    end
+    
 end
 
 ProductsHandler[3520395226] = function(receipt, player)  -- 250 coins
@@ -63,29 +77,41 @@ local function ProcessReceipt(receiptInfo)
 end
 
 function GamepassService.Init()
+
     Players.PlayerAdded:Connect(function(player)
         for i, PassId in ipairs(GamepassList) do
+            task.spawn(function()
+                local Data = Manager.profiles[player]
 
-            local HasGamepass = false
-            local sucess, errorMsg = pcall(function()
-                HasGamepass = MarketplaceService:UserOwnsGamePassAsync(player.UserId, PassId)
+                repeat
+                    task.wait()
+                    Data = Manager.profiles[player]
+                until Data ~= nil
+
+                local HasGamepass = false
+                local sucess, errorMsg = pcall(function()
+                    HasGamepass = MarketplaceService:UserOwnsGamePassAsync(player.UserId, PassId)
+                end)
+
+                if not sucess then
+                    error(errorMsg)
+                    return
+                end
+
+
+                if HasGamepass then
+                    GamepassHandler[PassId](player)
+                end
             end)
 
-            if not sucess then
-                error(errorMsg)
-                return
-            end
-
-
-            if HasGamepass then
-                GamepassHandler[PassId](player)
-            end
+            
         end
     end)
 
     MarketplaceService.ProcessReceipt = ProcessReceipt
     MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player, Id, PurchaseSuccessful)
         if PurchaseSuccessful and GamepassHandler[Id] then
+            warn("trur")
             GamepassHandler[Id](player)
             if Id == 1678020911 then
                 UiNotificaion.SendText(

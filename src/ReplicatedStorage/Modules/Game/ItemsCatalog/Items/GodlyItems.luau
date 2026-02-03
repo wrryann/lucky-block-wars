@@ -35,11 +35,25 @@ local GodlyItems = {
 		Rarity = "Godly"
 	},
 	{
-		Name = "Super Freeze Ray 2011",
+		Name = "Super Freeze Ray 2077",
 		Id = "42845853",
 		Rarity = "Godly"
 	},
-
+	{
+		Name = "Darkheart",
+		Id = "16895215",
+		Rarity = "Godly"
+	},
+	{
+		Name = "Stravants Lightning",
+		Id = "169669671",
+		Rarity = "Godly"
+	},
+	{
+		Name = "Blackhole Ray Gun",
+		Id = "78005009",
+		Rarity = "Godly"
+	},
 }
 
 return GodlyItems

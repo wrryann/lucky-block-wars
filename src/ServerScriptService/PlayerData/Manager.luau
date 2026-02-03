@@ -86,6 +86,15 @@ function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
 	local Data = Profile.Data
 
 	if Data.Coins - Price >= 0 then
+		if Data.Inventory.LuckyBlocks[LuckyBlock] then
+			UiNotificaion.SendText(
+				player,
+				"You already have this",
+				Color3.fromRGB(255, 0, 0)
+        	)
+			return
+		end
+
 		Manager.UpdateData(player, "Coins", -Price)
 		Data.Inventory.LuckyBlocks[LuckyBlock] = true
 
@@ -97,6 +106,7 @@ function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
             Color3.fromRGB(255, 0, 0)
         )
 	end
+	print(6)
 
 end
 

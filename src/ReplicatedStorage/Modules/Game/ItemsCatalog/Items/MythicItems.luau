@@ -1,7 +1,7 @@
 local MythicItems = {
 	{
 		Name = "Fall Periastron",
-		Id = "108158379",
+		Id = "2544549379",
 		Rarity = "Mythic"
 	},
 	{
@@ -25,8 +25,8 @@ local MythicItems = {
 		Rarity = "Mythic"
 	},
 	{
-		Name = "Crescendo, The Soul Stealer",
-		Id = "94794774",
+		Name = "Winters-Greatsword",
+		Id = "261439002",
 		Rarity = "Mythic"
 	},
 }

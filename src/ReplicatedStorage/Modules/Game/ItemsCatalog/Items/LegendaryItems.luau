@@ -34,19 +34,9 @@ local LegendaryItems = {
 		Id = "89487934",
 		Rarity = "Legendary"
 	},
-		{
-		Name = "Stop Hitting Yourself",
-		Id = "91360104",
-		Rarity = "Legendary"
-	},
 	{
 		Name = "Poseidons Quake Trident",
 		Id = "54130559",
-		Rarity = "Legendary"
-	},
-	{
-		Name = "Carnagecopia",
-		Id = "98346415",
 		Rarity = "Legendary"
 	},
 	{
@@ -67,6 +57,11 @@ local LegendaryItems = {
 	{
 		Name = "Knights of the Splintered Skies Lightning Staff",
 		ModelName = "KotSSLightningStaff",
+		Rarity = "Legendary"
+	},
+	{
+		Name = "Killer-Bee-Launcher",
+		Id = "163351579",
 		Rarity = "Legendary"
 	},
 }

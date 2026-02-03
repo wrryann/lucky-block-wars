@@ -35,11 +35,6 @@ local UncommonItems = {
 		Rarity = "Uncommon"
 	},
 	{
-		Name = "Artemis Bow",
-		Id = "92142841",
-		Rarity = "Uncommon"
-	},
-	{
 		Name = "Khopesh",
 		Id = "18481407",
 		Rarity = "Uncommon"
@@ -82,6 +77,56 @@ local UncommonItems = {
 	{
 		Name = "Vine Staff",
 		Id = "30847733",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Hot Potato lol",
+		Id = "25741198",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "The Drop",
+		Id = "152233094",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Mackerel",
+		Id = "46360920",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Green Balloon",
+		Id = "27494652",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Positronic Platform Producer",
+		Id = "34898883",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Double Fire Laser Gun",
+		Id = "183355892",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Ice Potion",
+		Id = "46362414",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "ROBLOX Invisicar",
+		Id = "129471151",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Spring-Saber",
+		Id = "728205177",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Fencing Foil",
+		Id = "10831489",
 		Rarity = "Uncommon"
 	},
 	

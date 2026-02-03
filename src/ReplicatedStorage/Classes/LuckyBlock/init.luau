@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ItemsCatalog = require(ReplicatedStorage.Modules.Game.ItemsCatalog)
 local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification)
+local RngAnimation = require(ReplicatedStorage.UI.Rng.RngAnimation)
 
 local LuckyBlockSystem = {}
 
@@ -60,10 +61,11 @@ function LuckyBlockSystem:GetRandomItem(char)
 	local Tool, Item
 	local Attempts = 0
 	repeat
-		print("working on itn")
 		if not Item then
 			Tool, Item = ItemsCatalog.GetRandomItem(Rarity)
 		else
+			print(Rarity)
+			print(Item)
 			local ItemIndex = table.find(ItemsCatalog[Rarity], Item)
 			Tool, Item = ItemsCatalog.GetRandomItem(Rarity, ItemIndex)
 		end
@@ -109,24 +111,30 @@ end
 
 function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 	local Character = Player.Character
+	if Character:GetAttribute("OpenningLuckyBlock") then return end
+
+	local SFX: Sound = script.Open:Clone()
+	SFX.Parent = LuckyBlockTool
 
 	local Tool, Item = self:GetRandomItem(Character)
 	if not Item then return end
 
 	local itemName = Item.Name:gsub("%s+", "_")
 	Character:SetAttribute(itemName, true)
+	Character:SetAttribute("OpenningLuckyBlock", true)
 
-	LuckyBlockTool:Destroy()
+	RngAnimation.Roll(Player, self.RarityTable, Item, Tool)
 
-	local Weapon = Tool:Clone()
-	Weapon.Parent = Player:WaitForChild("Backpack")
+	SFX:Play()
 
-	UiNotificaion.SendText(
-		Player,
-		"you got a "..Item.Name,
-		RarityColor(Item.Rarity)
-	)
+	SFX.Ended:Connect(function()
+		LuckyBlockTool:Destroy()
 
+		local Weapon = Tool:Clone()
+		Weapon.Parent = Player:WaitForChild("Backpack")
+
+		Character:SetAttribute("OpenningLuckyBlock", false)
+	end)
 end
 
 

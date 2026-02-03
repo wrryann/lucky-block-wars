@@ -94,7 +94,71 @@ local RareItems = {
 		Id = "63721732",
 		Rarity = "Rare"
 	},
-
+	{
+		Name = "Wooden Club",
+		Id = "13206984",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Scepter of Pharoahs",
+		Id = "18482570",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Flaming Orb of Divine Pain",
+		Id = "461488745",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Arabian-Knight-Scimitar",
+		Id = "71037076",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Dracovin Spell Book",
+		Id = "49491736",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Dark Falchion",
+		Id = "108149201",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Penguin Horde Attack",
+		Id = "187840979",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Wizard Flight Spell",
+		Id = "461489128",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Artemis Bow",
+		Id = "92142841",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Korblox DeathSpeakers Zombie Creator",
+		Id = "51760061",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Korblox DeathSpeakers Zombie Creator",
+		Id = "51760061",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Chaos Masters Wing Slasher",
+		Id = "87361995",
+		Rarity = "Rare"
+	},
+	{
+		Name = "Carnagecopia",
+		Id = "98346415",
+		Rarity = "Rare"
+	},
 }
 
 return RareItems

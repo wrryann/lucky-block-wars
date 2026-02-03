@@ -14,6 +14,11 @@ local MysteryItems = {
 		Id = "66426498",
 		Rarity = "Mystery"
 	},
+	{
+		Name = "Stop Hitting Yourself",
+		Id = "91360104",
+		Rarity = "Mystery"
+	},
 }
 
 return MysteryItems

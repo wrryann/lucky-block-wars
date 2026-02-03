@@ -99,6 +99,11 @@ local EpicItems = {
 		Id = "1074738432",
 		Rarity = "Epic"
 	},
+	{
+		Name = "Overseer Mage Staff",
+		Id = "2261167878",
+		Rarity = "Epic"
+	},
 	
 }
 

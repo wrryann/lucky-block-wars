@@ -6,12 +6,15 @@ local ServerStorage = game:GetService("ServerStorage")
 
 local InvitePlayersGui = ReplicatedStorage.Assets.UI.InveteFriends.Main
 
-local INTERMISSION_TIME = 45
-local MIN_PLAYERS = 1
+local INTERMISSION_TIME = 25
+local MIN_PLAYERS = 2
 
-local LevelSystem = {}
+local RoundService = {}
+
+RoundService.PlayersThatRespawned = {}
 
 local StartRound = require(script.StartRound)
+local CanRespawn: RemoteFunction = ReplicatedStorage.Events.CanRespawn
 
 local Maps = ServerStorage.Assets.Maps:GetChildren()
 local Lobby = workspace:WaitForChild("Lobby")  
@@ -43,7 +46,21 @@ end
 
 local EnoughPlayers = false
 
-function LevelSystem.Init()
+function RoundService.Init()
+    
+    CanRespawn.OnServerInvoke = function(player)
+        if workspace:GetAttribute("Game") == "In Round" 
+        and workspace:GetAttribute("Time") >= 60 
+        and not player:GetAttribute("InRound")
+        and StartRound.RoundActive 
+        and not table.find(StartRound.PlayersThatRespawned, player) then
+            return true
+        end
+        
+        return false
+    end
+    
+
     Players.PlayerAdded:Connect(function(plr)
         task.delay(5, function()
             if not EnoughPlayers then
@@ -56,7 +73,7 @@ function LevelSystem.Init()
 
     while true do  
         local PlayersList = GetPlayers()
-        if #Players:GetPlayers() >= MIN_PLAYERS then 
+        if #PlayersList >= MIN_PLAYERS then 
             EnoughPlayers = true
             Intermission()
 
@@ -73,4 +90,4 @@ function LevelSystem.Init()
 end
 
 
-return LevelSystem
+return RoundService

@@ -17,9 +17,20 @@ function LuckyBlockService:GiveLuckyBlock(Players)
             local LuckyBlockData = LuckyBlockCatalog[EquippedLuckyBlock]
             if LuckyBlockData then
                 for i = 1, 3 do
-                    print(LuckyBlockData.Model)
                     LuckyBlockData.Model:Clone().Parent = plr.Backpack
                 end
+            end
+        end
+    end
+end
+
+function LuckyBlockService:GiveLuckyBlockOnePlayer(Player)
+    local EquippedLuckyBlock = Manager.profiles[Player].Data.EquippedLuckyBlock
+    if EquippedLuckyBlock then
+        local LuckyBlockData = LuckyBlockCatalog[EquippedLuckyBlock]
+        if LuckyBlockData then
+            for i = 1, 3 do
+                LuckyBlockData.Model:Clone().Parent = Player.Backpack
             end
         end
     end

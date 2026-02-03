@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
-local Teams = game:GetService("Teams")
+--local Teams = game:GetService("Teams")
 local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification)
 
 
@@ -37,7 +37,11 @@ function LuckyShop.Init()
     local WatchIndex = 1
 
     function WatchPlayer(index)
-        for i, plr in ipairs(Teams.Players:GetPlayers()) do
+        for i, plr in ipairs(Players:GetChildren()) do
+
+            if not plr:GetAttribute("InRound") then
+                continue
+            end
             
             local PlayerRecorded = table.find(WatchablePlayers, plr)
             if not PlayerRecorded then
@@ -76,17 +80,6 @@ function LuckyShop.Init()
         Camera.CameraType = Enum.CameraType.Custom
         Camera.CameraSubject = Target.Character.Humanoid
 
-        Target:GetPropertyChangedSignal("Team"):Connect(function()
-            if Target.Team == Teams.Spectators then
-                table.remove(WatchablePlayers, WatchIndex)
-                Camera.CameraType = Enum.CameraType.Custom
-                Camera.CameraSubject = Player.Character.Humanoid
-                UiEnabled = false 
-                WatchUi.Enabled = UiEnabled  
-                return
-            end
-        end)
-
         Target.Character.Humanoid.Died:Connect(function()
             table.remove(WatchablePlayers, WatchIndex)
             Camera.CameraType = Enum.CameraType.Custom
@@ -96,17 +89,41 @@ function LuckyShop.Init()
             return
         end)
 
+        Target:GetAttributeChangedSignal("InRound"):Connect(function()
+            if not Player:GetAttribute("InRound") then
+                table.remove(WatchablePlayers, WatchIndex)
+                Camera.CameraType = Enum.CameraType.Custom
+                Camera.CameraSubject = Player.Character.Humanoid
+                UiEnabled = false 
+                WatchUi.Enabled = UiEnabled  
+                return 
+            end
+        end)
+
+        Players.PlayerRemoving:Connect(function(p)
+            if p == Target then
+                table.remove(WatchablePlayers, WatchIndex)
+                Camera.CameraType = Enum.CameraType.Custom
+                Camera.CameraSubject = Player.Character.Humanoid
+                UiEnabled = false 
+                WatchUi.Enabled = UiEnabled  
+                return
+            end
+        end)
+
     end
 
-    Player:GetPropertyChangedSignal("Team"):Connect(function()
-		if Player.Team == Teams.Players then
+    Player:GetAttributeChangedSignal("InRound"):Connect(function()
+        if Player:GetAttribute("InRound") then
             UiEnabled = false 
-            WatchUi.Enabled = UiEnabled   
+            WatchUi.Enabled = UiEnabled  
+            Camera.CameraType = Enum.CameraType.Custom
+            Camera.CameraSubject = Player.Character.Humanoid
         end
-	end)
+    end)
 
     WatchBtn.Activated:Connect(function()
-        if Player.Team == Teams:FindFirstChild("Players") then
+        if Player:GetAttribute("InRound") then
             return
         end
 

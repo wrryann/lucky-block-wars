@@ -21,31 +21,39 @@ function Catalog.GetToolById(Id)
 end
 
 function Catalog.GetTool(Name)
-    local Item
+    local Item = nil
 
     for _, rarityList in pairs(ItemsTable) do
-		for name, item in pairs(rarityList) do
-			if item.Name == Name then
+        for _, item in ipairs(rarityList) do -- use ipairs, not pairs
+            if item.Name == Name then
                 Item = item
                 break
             end
-		end
-	end
-
-    if not Item.Id and Item.ModelName then
-        local Tool = BrokenGears:FindFirstChild(Item.ModelName):Clone()
-        return Tool
+        end
+        if Item then break end
     end
 
-    local Tool = Catalog.GetToolById(Item.Id):Clone()
-    return Tool
+    if not Item then
+        warn("Item not found:", Name)
+        return nil
+    end
+
+    if not Item.Id and Item.ModelName then
+        local Tool = BrokenGears:FindFirstChild(Item.ModelName)
+        if Tool then
+            return Tool:Clone()
+        end
+    end
+
+    local Tool = Catalog.GetToolById(Item.Id)
+    return Tool and Tool:Clone()
 end
 
 function Catalog.GetAllItems()
 	local items = {}
 
 	for _, rarityList in pairs(ItemsTable) do
-		for _, item in pairs(rarityList) do
+		for _, item in ipairs(rarityList) do
 			table.insert(items, item.Name)
 		end
 	end
@@ -55,7 +63,7 @@ end
 
 function Catalog.GiveAllGears(Parent)
 	for _, rarityList in pairs(ItemsTable) do
-		for _, item in pairs(rarityList) do
+		for _, item in ipairs(rarityList) do
 
             if not item.Id and item.ModelName then
                 local Tool = BrokenGears:FindFirstChild(item.ModelName)
@@ -87,6 +95,28 @@ function Catalog.GetRandomItem(rarity: string, ExcludedIndex: number?)
 
             local Tool = Catalog.GetToolById(itemsList[randomIndex].Id)
             return Tool, TableItem
+        end
+    end
+
+    return nil
+end
+
+function Catalog.GetRandomItemImage(rarity: string)
+    local itemsList = ItemsTable[rarity]
+    if itemsList then
+        while true do
+            local randomIndex = math.random(1, #itemsList)
+            
+            local TableItem = itemsList[randomIndex]
+
+            if not itemsList[randomIndex].Id and itemsList[randomIndex].ModelName then
+                local TextureId = BrokenGears:FindFirstChild(itemsList[randomIndex].ModelName).TextureId
+                return TextureId, TableItem
+            end
+
+            local Image = "https://www.roblox.com/asset-thumbnail/image?assetId="..itemsList[randomIndex].Id.."&width=420&height=420&format=png"
+
+            return Image, TableItem
         end
     end
 
