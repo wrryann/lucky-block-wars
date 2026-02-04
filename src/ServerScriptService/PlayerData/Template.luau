@@ -16,8 +16,11 @@ local template = {
 		},
 	},
 	
-	Tutorial = false,
-	Country = "Unknown",
+	Tutorials = {
+		ShopTutorial = false,
+		OpenLuckyTutorial = false,
+		KeysTutorial = false	
+	},
 }
 
 return template
