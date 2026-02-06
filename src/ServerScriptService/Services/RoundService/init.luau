@@ -75,7 +75,9 @@ function RoundService.Init()
         local PlayersList = GetPlayers()
         if #PlayersList >= MIN_PLAYERS then 
             EnoughPlayers = true
-            Intermission()
+            Intermission()  
+
+            if #PlayerList < MIN_PLAYERS then continue end
 
             local RandomMap = Maps[math.random(#Maps)]
             StartRound.Init(RandomMap)
