@@ -3,6 +3,8 @@ local ReplicatedStorage = game.ReplicatedStorage
 local Template = require(game.ServerScriptService.PlayerData.Template)
 local Manager = require(game.ServerScriptService.PlayerData.Manager)
 
+local TutorialRemote: RemoteFunction = ReplicatedStorage.Events.TutorialRemote
+
 local Players = game:GetService("Players")
 local ProfileStore = ProfileService.GetProfileStore(
 	"Main_",
@@ -51,6 +53,19 @@ local function PlayerAdded(player)
 		--   Roblox servers trying to load this profile at the same time:
 		player:Kick() 
 	end
+end
+
+TutorialRemote.OnServerInvoke = function(player, Input)
+	if Input == "CanKeys" then
+		return Manager.profiles[player].Data.Tutorials.KeysTutorial
+	end
+
+	if Input == "KeysCompleted" then
+		Manager.profiles[player].Data.Tutorials.KeysTutorial = true
+		return
+	end
+
+	return
 end
 
 ----- Initialize -----

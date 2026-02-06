@@ -39,11 +39,6 @@ local EpicItems = {
 		Id = "92142829",
 		Rarity = "Epic"
 	},
-		{
-		Name = "Zombie Staff",
-		Id = "26421972",
-		Rarity = "Epic"
-	},
 	{
 		Name = "Bat Knight Bat Sword",
 		Id = "17680660",

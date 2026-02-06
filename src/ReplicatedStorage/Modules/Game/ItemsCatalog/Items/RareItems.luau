@@ -159,6 +159,11 @@ local RareItems = {
 		Id = "98346415",
 		Rarity = "Rare"
 	},
+	{
+		Name = "Zombie Staff",
+		Id = "26421972",
+		Rarity = "Rare"
+	},
 }
 
 return RareItems

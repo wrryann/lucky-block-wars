@@ -21,6 +21,8 @@ local template = {
 		OpenLuckyTutorial = false,
 		KeysTutorial = false	
 	},
+
+	Country = "Null"
 }
 
 return template

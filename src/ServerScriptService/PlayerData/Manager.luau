@@ -1,3 +1,4 @@
+local DataStoreService = game:GetService("DataStoreService")
 local MarketplaceService = game:GetService("MarketplaceService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Remotes = game.ReplicatedStorage.Events.Profile
@@ -7,6 +8,9 @@ local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification
 
 local EquipEvent = ReplicatedStorage.Events.EquipLuckyBlock
 local BuyEvent = ReplicatedStorage.Events.BuyLuckyBlock
+
+local GlobalCoinsStore = DataStoreService:GetOrderedDataStore("GlobalCoins")
+local GlobalWinsStore = DataStoreService:GetOrderedDataStore("GlobalWins")
 
 local Manager = {}
 
@@ -18,6 +22,14 @@ local function GetData(Player)
 	local Data = Profile.Data
 	
 	return Data 
+end
+
+local function UpdateGlobalStats(player)
+	local profile = Manager.profiles[player]
+	if not profile then return end
+
+	GlobalCoinsStore:SetAsync(player.UserId, profile.Data.Coins)
+	GlobalWinsStore:SetAsync(player.UserId, profile.Data.Wins)
 end
 
 -- kill
@@ -61,6 +73,7 @@ function Manager.UpdateData(player, Item, amount)
 		end
 	end
 
+	UpdateGlobalStats(player)
 	DataUpdated:FireClient(player, Profile.Data)
 
 	return Data 
@@ -97,8 +110,6 @@ function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
 
 		Manager.UpdateData(player, "Coins", -Price)
 		Data.Inventory.LuckyBlocks[LuckyBlock] = true
-
-		DataUpdated:FireClient(player, Profile.Data)
 	else
 		UiNotificaion.SendText(
             player,

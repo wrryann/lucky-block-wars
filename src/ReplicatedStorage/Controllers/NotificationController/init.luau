@@ -21,7 +21,7 @@ local Messages = {
 function NotificationController.Init()
     if player:IsInGroup(groupId) then return end
 
-    task.wait(8) 
+    task.wait(20) 
 
     UiNotificaion.SendText(
         player,
