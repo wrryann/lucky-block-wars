@@ -110,6 +110,8 @@ function Manager.BuyLuckyBlock(player, LuckyBlock, Price)
 
 		Manager.UpdateData(player, "Coins", -Price)
 		Data.Inventory.LuckyBlocks[LuckyBlock] = true
+
+		DataUpdated:FireClient(player, Profile.Data)
 	else
 		UiNotificaion.SendText(
             player,
