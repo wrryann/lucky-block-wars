@@ -110,14 +110,25 @@ end
 
 
 function LuckyBlockSystem:Open(Player, LuckyBlockTool)
+	local Tool, Item
 	local Character = Player.Character
-	if Character:GetAttribute("OpenningLuckyBlock") then return end
 
 	local SFX: Sound = script.Open:Clone()
 	SFX.Parent = LuckyBlockTool
 
-	local Tool, Item = self:GetRandomItem(Character)
-	if not Item then return end
+	if not Player:GetAttribute("FreeItem") then 
+		if Character:GetAttribute("OpenningLuckyBlock") then return end
+
+		Tool, Item = self:GetRandomItem(Character)
+	else
+		local ItemName = Player:GetAttribute("FreeItem")
+		
+		Item, Tool = ItemsCatalog.GetItemByName(ItemName)
+		print(ItemName)
+		print(Item)
+		print(Tool)
+	end
+	
 
 	local itemName = Item.Name:gsub("%s+", "_")
 	Character:SetAttribute(itemName, true)
@@ -133,6 +144,7 @@ function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 		local Weapon = Tool:Clone()
 		Weapon.Parent = Player:WaitForChild("Backpack")
 
+		Player:SetAttribute("FreeItem", nil)
 		Character:SetAttribute("OpenningLuckyBlock", false)
 	end)
 end

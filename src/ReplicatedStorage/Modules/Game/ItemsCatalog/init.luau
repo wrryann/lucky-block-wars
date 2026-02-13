@@ -20,6 +20,35 @@ function Catalog.GetToolById(Id)
     return Item
 end
 
+function Catalog.GetItemByName(Name)
+    local Item = nil
+
+    for _, rarityList in pairs(ItemsTable) do
+        for _, item in ipairs(rarityList) do -- use ipairs, not pairs
+            if item.Name == Name then
+                Item = item
+                break
+            end
+        end
+        if Item then break end
+    end
+
+    if not Item then
+        warn("Item not found:", Name)
+        return nil
+    end
+
+    if not Item.Id and Item.ModelName then
+        local Tool = BrokenGears:FindFirstChild(Item.ModelName)
+        if Tool then
+            return Tool:Clone()
+        end
+    end
+
+    local Tool = Catalog.GetToolById(Item.Id)
+    return Item, Tool 
+end
+
 function Catalog.GetTool(Name)
     local Item = nil
 

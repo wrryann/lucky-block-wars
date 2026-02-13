@@ -54,6 +54,11 @@ local PoopyItems = {
 		Id = "330296114",
 		Rarity = "Poopy"
 	},
+	{
+		Name = "Blow Dryer",
+		Id = "11719016",
+		Rarity = "Poopy"
+	},
 
 
 }

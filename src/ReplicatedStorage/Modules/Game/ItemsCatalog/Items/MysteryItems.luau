@@ -19,6 +19,16 @@ local MysteryItems = {
 		Id = "91360104",
 		Rarity = "Mystery"
 	},
+	{
+        Name = "Scroll of Sevenless",
+        Id = "125013830",
+        Rarity = "Mystery"
+    },
+	{
+        Name = "Telamonster the Chaos Edge",
+        Id = "93136746",
+        Rarity = "Mystery"
+    },
 }
 
 return MysteryItems

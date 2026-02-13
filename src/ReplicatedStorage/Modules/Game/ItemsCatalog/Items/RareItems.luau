@@ -164,6 +164,27 @@ local RareItems = {
 		Id = "26421972",
 		Rarity = "Rare"
 	},
+	{
+        Name = "Gear Stealer Bucket",
+        Id = "25162389",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Bear Mine Gun",
+        Id = "90718350",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Sword of Swords",
+        Id = "139578136",
+        Rarity = "Rare"
+    },
+	{
+        Name = "The Generals 45",
+        Id = "97885508",
+        Rarity = "Rare"
+    },  
+
 }
 
 return RareItems

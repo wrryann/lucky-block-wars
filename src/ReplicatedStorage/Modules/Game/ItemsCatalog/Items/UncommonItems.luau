@@ -129,6 +129,26 @@ local UncommonItems = {
 		Id = "10831489",
 		Rarity = "Uncommon"
 	},
+	{
+        Name = "8 Bit Throwing Barrel",
+        Id = "31839260",
+        Rarity = "Uncommon"
+    },
+	{
+        Name = "Confusoray 672",
+        Id = "48596305",
+        Rarity = "Uncommon"
+    },
+	{
+		Name = "Quantum Entangler",
+		Id = "72644644",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Quadshooter",
+		Id = "163351966",
+		Rarity = "Uncommon"
+	},
 	
 }
 

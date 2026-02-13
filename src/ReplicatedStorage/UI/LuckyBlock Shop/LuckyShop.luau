@@ -53,12 +53,13 @@ function LuckyShop.Init()
             LuckyBlock.Price,
             LuckyBlock.Description,
             LuckyBlock.ImageID,
+            LuckyBlock.Multiplier,
             LuckyBlock.RarityTable
         )
     end
 end
 
-function ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
+function ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, Multiplier, RarityTable)
     local Tab = ShopUI.Main.Frame.Tab
 
     if Tab.LuckyBlockImage then
@@ -76,6 +77,7 @@ function ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, Rarity
     end
     
     local RarityTab = Tab.RarityTable.Info
+    RarityTab.Parent.Multiplier.Text = Multiplier .. "X Multiplier"
     for DisplayName, Rarity in pairs(RarityTable) do
         if DisplayName == "Mystery" then
             continue
@@ -147,7 +149,7 @@ function ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, Rarity
 
 end
 
-function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
+function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID, Multiplier, RarityTable)
     local BoyUshouldKnow = ShopUI.Parent.SFX.BoyUshouldKnow
 
     local NewLucky = LuckyBlockButton:Clone()
@@ -164,7 +166,7 @@ function LuckyShop.SetGui(Name, DisplayName, Model, Price, Description, ImageID,
     NewLucky.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1
             or input.UserInputType == Enum.UserInputType.Touch then
-            ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, RarityTable)
+            ChangeTab(Name, DisplayName, Model, Price, Description, ImageID, Multiplier, RarityTable)
         end
 
     end)

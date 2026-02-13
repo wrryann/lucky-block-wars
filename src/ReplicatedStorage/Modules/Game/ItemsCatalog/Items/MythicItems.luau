@@ -29,6 +29,13 @@ local MythicItems = {
 		Id = "261439002",
 		Rarity = "Mythic"
 	},
+	{
+        Name = "Dagger of Shattered Dimensions",
+        Id = "71037101",
+        Rarity = "Mythic"
+    },
+
+	
 }
 
 return MythicItems

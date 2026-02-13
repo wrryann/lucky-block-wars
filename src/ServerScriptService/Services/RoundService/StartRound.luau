@@ -17,12 +17,13 @@ local Transition = require(game.ReplicatedStorage.UI.Transition.Transition)
 local WinnerModel = workspace.Lobby -- change
 local MusicService = require(game.ServerScriptService.Services.MusicService)
 local UiNotificaion = require(game.ReplicatedStorage.UI.Notification.TextNotification)
+local LuckyBlockCatalog = require(game.ReplicatedStorage.Modules.Game.LuckyBlockCatalog)
 
 StartRound.RoundActive = false
 StartRound.InitialPlayers = 0
 StartRound.PlayersThatRespawned = {}
 StartRound.CurrentMap = nil
-StartRound.PlayersInRound = nil
+StartRound.PlayersInRound = {}
 
 local Winner
 
@@ -32,6 +33,14 @@ local function Countdown(time)
             return
         end
         workspace:SetAttribute("Time", i)
+        if i == 60 then
+            for _, plr in ipairs(StartRound.PlayersInRound) do
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = plr.Character or plr.CharacterAdded:Wait()
+                highlight.FillTransparency = 1
+                highlight.OutlineColor = Color3.fromRGB(255, 0, 0)
+            end
+        end
         task.wait(1)
     end
 end
@@ -80,7 +89,7 @@ local function GiveBounty(hum, player)
     end
 
     -- change if dont work
-    if LastCreator and LastCreator ~= player then
+    if LastCreator and LastCreator.Value ~= player then
         local killer = LastCreator.Value
 
         if killer then
@@ -93,14 +102,30 @@ local function GiveBounty(hum, player)
                     )
                 end)
             end
-            Manager.UpdateData(killer, "Coins", 10)
+            local amount = 10 
+
+            local Data = Manager.profiles[killer].Data
+            local LuckyMultiplier = LuckyBlockCatalog[Data.EquippedLuckyBlock].Multiplier
+            if LuckyMultiplier then
+                amount = amount * LuckyMultiplier
+            end
+            
+            Manager.UpdateData(killer, "Coins", amount)
             Manager.UpdateData(killer, "Kills", 1)
         end
     end
 end 
 
 local function AwardWinners(winner, plrsNum)
-    Manager.UpdateData(winner, "Coins", 10 * plrsNum)
+    local amount = 10 
+
+    local Data = Manager.profiles[winner].Data
+    local LuckyMultiplier = LuckyBlockCatalog[Data.EquippedLuckyBlock].Multiplier
+	if LuckyMultiplier then
+		amount = amount * LuckyMultiplier
+	end
+
+    Manager.UpdateData(winner, "Coins", amount * plrsNum)
     Manager.UpdateData(winner, "Wins", 1)
 
     workspace:SetAttribute("Winner", winner.Name)
@@ -119,8 +144,6 @@ local function WatchPlayers(plrs)
         local DeadConnection 
 
         DeadConnection = hum.Died:Connect(function()
-            print(plrs)
-            print(StartRound.PlayersInRound)
             DeadConnection:Disconnect()
             for index, p in ipairs(plrs) do
                 if p == plr then

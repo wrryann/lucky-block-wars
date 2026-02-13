@@ -5,6 +5,7 @@ local Remotes = game.ReplicatedStorage.Events.Profile
 local DataUpdated = Remotes.DataUpdated
 
 local UiNotificaion = require(ReplicatedStorage.UI.Notification.TextNotification)
+local LuckyBlockCatalog = require(game.ReplicatedStorage.Modules.Game.LuckyBlockCatalog)
 
 local EquipEvent = ReplicatedStorage.Events.EquipLuckyBlock
 local BuyEvent = ReplicatedStorage.Events.BuyLuckyBlock
@@ -52,12 +53,12 @@ function Manager.UpdateData(player, Item, amount)
 	local Data = Profile.Data
 
 	if Item == "Coins" and amount > 0 then
-		if player:IsInGroup(35799359) and amount >= 5 then
-			amount = amount + 5
-		end
-
 		if OwnsGamepass(player, 1674211169) then
 			amount = amount * 2
+		end
+
+		if player:IsInGroup(35799359) and amount >= 5 then
+			amount = amount + 5
 		end
 	end
 

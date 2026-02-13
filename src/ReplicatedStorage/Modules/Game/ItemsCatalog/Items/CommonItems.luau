@@ -170,6 +170,11 @@ local CommonItems = {
 		Id = "44115185",
 		Rarity = "Common"
 	},
+	{
+		Name = "Scepter of Divine Indignation",
+		Id = "35682284",
+		Rarity = "Common"
+	},
 }
 
 return CommonItems
