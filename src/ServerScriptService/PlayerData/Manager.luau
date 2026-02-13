@@ -74,8 +74,10 @@ function Manager.UpdateData(player, Item, amount)
 		end
 	end
 
-	UpdateGlobalStats(player)
 	DataUpdated:FireClient(player, Profile.Data)
+	task.spawn(function()
+		UpdateGlobalStats(player)
+	end)
 
 	return Data 
 end
