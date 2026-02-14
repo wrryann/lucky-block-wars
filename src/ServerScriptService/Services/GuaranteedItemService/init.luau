@@ -37,7 +37,7 @@ local RarityTable = {
 	Mystery = 33.3,
 }
 
-local Time = 420
+local Time = 500
 
 local function Countdown(plr)
     for i = Time, 1, -1 do
@@ -90,7 +90,7 @@ function GuaranteedItem.Init()
 			ServerConnection = ClaimFreeItem.OnServerEvent:Connect(function()
 				player:SetAttribute("FreeItem", Item.Name)
 				FreeItemTab.Main.Claim.Text = "Claimed"
-				Time = 420
+				Time = 500
 				wait(5)
 				
 				Claimed = true
