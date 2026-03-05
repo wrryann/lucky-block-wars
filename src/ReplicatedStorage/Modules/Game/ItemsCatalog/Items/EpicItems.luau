@@ -99,6 +99,16 @@ local EpicItems = {
 		Id = "2261167878",
 		Rarity = "Epic"
 	},
+	{
+		Name = "Sword of Darkness",
+		Id = "77443491",
+		Rarity = "Epic"
+	},
+	{
+		Name = "Overseer Warlords Sword",
+		Id = "483308034",
+		Rarity = "Epic"
+	},
 	
 }
 

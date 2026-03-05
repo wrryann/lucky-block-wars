@@ -13,7 +13,8 @@ local Messages = {
     "Join the Rustye Group!",
     "Like the game to get more lucky! 🍀",
     "Join the group to get rid of these notifications! 👍",
-    "Don't forget to favorite the game! ⭐"
+    "Don't forget to favorite the game! ⭐",
+    "Report bugs on the Discord server! 🚫"
 }
 
 

@@ -66,7 +66,7 @@ function LuckyBlockSystem:GetRandomItem(char)
 		else
 			print(Rarity)
 			print(Item)
-			local ItemIndex = table.find(ItemsCatalog[Rarity], Item)
+			local ItemIndex = table.find(ItemsCatalog.ItemsTable[Rarity], Item)
 			Tool, Item = ItemsCatalog.GetRandomItem(Rarity, ItemIndex)
 		end
 		task.wait()
@@ -124,9 +124,6 @@ function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 		local ItemName = Player:GetAttribute("FreeItem")
 		
 		Item, Tool = ItemsCatalog.GetItemByName(ItemName)
-		print(ItemName)
-		print(Item)
-		print(Tool)
 	end
 	
 
@@ -140,6 +137,9 @@ function LuckyBlockSystem:Open(Player, LuckyBlockTool)
 
 	SFX.Ended:Connect(function()
 		LuckyBlockTool:Destroy()
+
+		print(ItemsCatalog.ItemsTable["Common"])
+		print(ItemsCatalog.ItemsTable["Uncommon"])
 
 		local Weapon = Tool:Clone()
 		Weapon.Parent = Player:WaitForChild("Backpack")

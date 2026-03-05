@@ -64,6 +64,11 @@ local LegendaryItems = {
 		Id = "163351579",
 		Rarity = "Legendary"
 	},
+	{
+		Name = "Kami Potion",
+		Id = "66426498",
+		Rarity = "Legendary"
+	},
 }
 
 return LegendaryItems

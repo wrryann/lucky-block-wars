@@ -54,6 +54,11 @@ local GodlyItems = {
 		Id = "78005009",
 		Rarity = "Godly"
 	},
+	{
+		Name = "Amethyst Periastron Kappa",
+		Id = "93136802",
+		Rarity = "Godly"
+	},
 }
 
 return GodlyItems

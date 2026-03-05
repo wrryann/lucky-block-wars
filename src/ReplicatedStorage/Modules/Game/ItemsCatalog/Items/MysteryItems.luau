@@ -10,16 +10,6 @@ local MysteryItems = {
 		Rarity = "Mystery"
 	},
 	{
-		Name = "Kami Potion",
-		Id = "66426498",
-		Rarity = "Mystery"
-	},
-	{
-		Name = "Stop Hitting Yourself",
-		Id = "91360104",
-		Rarity = "Mystery"
-	},
-	{
         Name = "Scroll of Sevenless",
         Id = "125013830",
         Rarity = "Mystery"

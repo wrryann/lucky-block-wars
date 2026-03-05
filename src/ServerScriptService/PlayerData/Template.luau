@@ -22,7 +22,7 @@ local template = {
 		KeysTutorial = false	
 	},
 
-	Country = "Null"
+--	Country = "Null"
 }
 
 return template

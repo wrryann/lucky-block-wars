@@ -34,7 +34,16 @@ local MythicItems = {
         Id = "71037101",
         Rarity = "Mythic"
     },
-
+	{
+        Name = "Noir Periastron Psi",
+        Id = "120307951",
+        Rarity = "Mythic"
+    },
+		{
+		Name = "Stop Hitting Yourself",
+		Id = "91360104",
+		Rarity = "Mythic"
+	},
 	
 }
 

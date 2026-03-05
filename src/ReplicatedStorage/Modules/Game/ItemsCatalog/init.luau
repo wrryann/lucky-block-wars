@@ -3,7 +3,7 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local BrokenGears = replicatedStorage.Assets.Gears
 -- YO 
 local Catalog = {}
-local ItemsTable = {}
+Catalog.ItemsTable = {}
 
 local ItemsFolder = script.Items
 
@@ -23,7 +23,7 @@ end
 function Catalog.GetItemByName(Name)
     local Item = nil
 
-    for _, rarityList in pairs(ItemsTable) do
+    for _, rarityList in pairs(Catalog.ItemsTable) do
         for _, item in ipairs(rarityList) do -- use ipairs, not pairs
             if item.Name == Name then
                 Item = item
@@ -52,7 +52,7 @@ end
 function Catalog.GetTool(Name)
     local Item = nil
 
-    for _, rarityList in pairs(ItemsTable) do
+    for _, rarityList in pairs(Catalog.ItemsTable) do
         for _, item in ipairs(rarityList) do -- use ipairs, not pairs
             if item.Name == Name then
                 Item = item
@@ -81,7 +81,7 @@ end
 function Catalog.GetAllItems()
 	local items = {}
 
-	for _, rarityList in pairs(ItemsTable) do
+	for _, rarityList in pairs(Catalog.ItemsTable) do
 		for _, item in ipairs(rarityList) do
 			table.insert(items, item.Name)
 		end
@@ -91,7 +91,7 @@ function Catalog.GetAllItems()
 end
 
 function Catalog.GiveAllGears(Parent)
-	for _, rarityList in pairs(ItemsTable) do
+	for _, rarityList in pairs(Catalog.ItemsTable) do
 		for _, item in ipairs(rarityList) do
 
             if not item.Id and item.ModelName then
@@ -107,7 +107,7 @@ function Catalog.GiveAllGears(Parent)
 end
 
 function Catalog.GetRandomItem(rarity: string, ExcludedIndex: number?)
-    local itemsList = ItemsTable[rarity]
+    local itemsList = Catalog.ItemsTable[rarity]
     if itemsList then
         while true do
             local randomIndex = math.random(1, #itemsList)
@@ -131,7 +131,7 @@ function Catalog.GetRandomItem(rarity: string, ExcludedIndex: number?)
 end
 
 function Catalog.GetRandomItemImage(rarity: string)
-    local itemsList = ItemsTable[rarity]
+    local itemsList = Catalog.ItemsTable[rarity]
     if itemsList then
         while true do
             local randomIndex = math.random(1, #itemsList)
@@ -163,50 +163,50 @@ local Mythic = require(ItemsFolder.MythicItems)
 local Mystery = require(ItemsFolder.MysteryItems)
 
 
-ItemsTable.Poopy = {}
-ItemsTable.Common = {}
-ItemsTable.Uncommon = {}
-ItemsTable.Rare = {}
-ItemsTable.Epic = {}
-ItemsTable.Legendary = {}
-ItemsTable.Godly = {}
-ItemsTable.Mythic = {}
-ItemsTable.Mystery = {}
+Catalog.ItemsTable.Poopy = {}
+Catalog.ItemsTable.Common = {}
+Catalog.ItemsTable.Uncommon = {}
+Catalog.ItemsTable.Rare = {}
+Catalog.ItemsTable.Epic = {}
+Catalog.ItemsTable.Legendary = {}
+Catalog.ItemsTable.Godly = {}
+Catalog.ItemsTable.Mythic = {}
+Catalog.ItemsTable.Mystery = {}
 
 for _, item in ipairs(Poopy) do
-    table.insert(ItemsTable.Poopy, item)
+    table.insert(Catalog.ItemsTable.Poopy, item)
 end
 
 for _, item in ipairs(Common) do
-    table.insert(ItemsTable.Common, item)
+    table.insert(Catalog.ItemsTable.Common, item)
 end
 
 for _, item in ipairs(Uncommon) do
-    table.insert(ItemsTable.Uncommon, item)
+    table.insert(Catalog.ItemsTable.Uncommon, item)
 end
 
 for _, item in ipairs(Rare) do
-    table.insert(ItemsTable.Rare, item)
+    table.insert(Catalog.ItemsTable.Rare, item)
 end
 
 for _, item in ipairs(Epic) do
-    table.insert(ItemsTable.Epic, item)
+    table.insert(Catalog.ItemsTable.Epic, item)
 end
 
 for _, item in ipairs(Legendary) do
-    table.insert(ItemsTable.Legendary, item)
+    table.insert(Catalog.ItemsTable.Legendary, item)
 end
 
 for _, item in ipairs(Godly) do
-    table.insert(ItemsTable.Godly, item)
+    table.insert(Catalog.ItemsTable.Godly, item)
 end
 
 for _, item in ipairs(Mythic) do
-    table.insert(ItemsTable.Mythic, item)
+    table.insert(Catalog.ItemsTable.Mythic, item)
 end
 
 for _, item in ipairs(Mystery) do
-    table.insert(ItemsTable.Mystery, item)
+    table.insert(Catalog.ItemsTable.Mystery, item)
 end
 
 return Catalog

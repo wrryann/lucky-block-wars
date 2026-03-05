@@ -149,6 +149,61 @@ local UncommonItems = {
 		Id = "163351966",
 		Rarity = "Uncommon"
 	},
+	{
+		Name = "Inglaciator 6000",
+		Id = "185422055",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Sword Fish",
+		Id = "54130543",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Dual Bacon Daggers",
+		Id = "168142394",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Checkerboard Sword",
+		Id = "46132907",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Fallen Artemis Sword Shield",
+		Id = "243778818",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Breath of Ice",
+		Id = "2605966484",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Buildermans Hammer of Shimmering Light",
+		Id = "53623248",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Homemade Sword and Shield",
+		Id = "244082303",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Fencing Foil",
+		Id = "10831489",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Riptide",
+		Id = "124472052",
+		Rarity = "Uncommon"
+	},
+	{
+		Name = "Faux Firebrand",
+		Id = "32858699",
+		Rarity = "Uncommon"
+	},
 	
 }
 

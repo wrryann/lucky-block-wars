@@ -184,6 +184,31 @@ local RareItems = {
         Id = "97885508",
         Rarity = "Rare"
     },  
+	{
+        Name = "Giant Kaiju Arms",
+        Id = "1117745433",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Knights of the Splintered Skies Morning Star",
+        Id = "55917409",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Intergalactic Sword",
+        Id = "170903610",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Homemade Wings",
+        Id = "161216321",
+        Rarity = "Rare"
+    },
+	{
+        Name = "Trollin Pumpkin",
+        Id = "62803186",
+        Rarity = "Rare"
+    },
 
 }
 

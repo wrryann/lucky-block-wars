@@ -175,6 +175,26 @@ local CommonItems = {
 		Id = "35682284",
 		Rarity = "Common"
 	},
+	{
+		Name = "Wizards of the Astral Isles Limb Stretching Spell",
+		Id = "106701702",
+		Rarity = "Common"
+	},
+	{
+		Name = "Marshmallow Shooter",
+		Id = "904534058",
+		Rarity = "Common"
+	},
+	{
+		Name = "Glorious Sword",
+		Id = "1760406591",
+		Rarity = "Common"
+	},
+	{
+		Name = "Orbital Strike Piano",
+		Id = "236402747",
+		Rarity = "Common"
+	},
 }
 
 return CommonItems

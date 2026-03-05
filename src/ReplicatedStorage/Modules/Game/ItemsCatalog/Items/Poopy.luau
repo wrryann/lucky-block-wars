@@ -59,8 +59,16 @@ local PoopyItems = {
 		Id = "11719016",
 		Rarity = "Poopy"
 	},
-
-
+	{
+		Name = "Leprechaun Harp",
+		Id = "109583822",
+		Rarity = "Poopy"
+	},
+	{
+		Name = "Misfortune Cookie",
+		Id = "95484354",
+		Rarity = "Poopy"
+	},
 }
 
 return PoopyItems
